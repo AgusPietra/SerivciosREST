@@ -31,20 +31,5 @@ public class UserGetController {
         }
 
         return interests;
-        //return new User(result.get(0).getUsername(),
-        //        result.get(0).getInterest);
-
-
-        /*if(result.size()>0) {
-            User firstResult = result.get(0);
-            return firstResult;
-        }
-        return new User ("","");
-*/
-        //System.out.println(result.get(0).getClass());
-        //System.out.println(firstResult.getInterest());
-        //System.out.println(firstResult.getUserName());
-        //return new User(name, "pepepepe");
-        //return result;
     }
 }

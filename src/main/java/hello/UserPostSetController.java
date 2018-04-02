@@ -19,7 +19,9 @@ public class UserPostSetController {
     public User user(@RequestParam(value="username"/*, defaultValue=""*/) String userName,
                      @RequestParam(value="interest"/*, defaultValue=""*/) String interest) {
         //TODO chequear que el usuario no tenga ya interés? O eso es desde la app?
-        repository.save(new User(userName, interest));
+        User interestExists = repository.findFirstByUserNameAndInterest(userName,interest);
+        if(interestExists == null)
+            repository.save(new User(userName, interest));
         return new User(userName,
                 interest);
     }

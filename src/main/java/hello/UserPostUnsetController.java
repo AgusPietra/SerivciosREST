@@ -19,9 +19,10 @@ public class UserPostUnsetController {
     public User user(@RequestParam(value="username"/*, defaultValue=""*/) String userName,
                      @RequestParam(value="interest"/*, defaultValue=""*/) String interest) {
         //TODO chequear que el usuario no tenga ya interés? O eso es desde la app?
-        User userToDelete = repository.findByUserNameAndInterest(userName,interest);
-        repository.delete(userToDelete);
-        return userToDelete;
+        User userInterestToDelete = repository.findFirstByUserNameAndInterest(userName,interest);
+        if(userInterestToDelete != null)
+            repository.delete(userInterestToDelete);
+        return userInterestToDelete;
     }
 }
 
