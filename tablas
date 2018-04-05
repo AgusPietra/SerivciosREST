@@ -20,3 +20,4 @@ Contiene todas las cuentas seguidas por algún usuario. No se repiten. Tiene cie
 Un cron la actualiza cada cierto tiempo, basándose en la última actualización de ese contenido.
 Un cron lo elimina si pasó mucho tiempo de que un usuario pida esa info.
 
+TODO: Que pasa si un usuario seguido borrá su cuenta? Debo eliminar directamente todo registro en las tablás de seguidos, seguídos únicos y boards?
