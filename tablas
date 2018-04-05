@@ -1,0 +1,22 @@
+Tabla de usuarios:
+Contiene los usernames registrados.
+
+Tabla de boards:
+Contiene el nombre de usuario, el nombre del board, la lista de intereses y la lista de seguidos.
+
+Tabla de intereses únicos:
+Contiene todos los intereses registrados por algún usuario. No se repiten. 
+
+Tabla de seguidos únicos:
+Contiene todas las cuentas seguidas por algún usuario. No se repiten.
+
+Tabla de intereses:
+Contiene todos los intereses registrados por algún usuario. No se repiten. Tiene cierta cantidad de contenido asociado a ese interés. Tiene la fecha de actualización de ese contenido. Tiene la fecha de última solicitud de ese contenido por algún usuario.
+Un cron la actualiza cada cierto tiempo, basándose en la última actualización de ese contenido.
+Un cron lo elimina si pasó mucho tiempo de que un usuario pida esa info.
+
+Tabla de seguidos:
+Contiene todas las cuentas seguidas por algún usuario. No se repiten. Tiene cierta cantidad de contenido asociado a ese usuario. Tiene la fecha de actualización de ese contenido. Tiene la fecha de última solicitud de ese contenido por algún usuario.
+Un cron la actualiza cada cierto tiempo, basándose en la última actualización de ese contenido.
+Un cron lo elimina si pasó mucho tiempo de que un usuario pida esa info.
+
