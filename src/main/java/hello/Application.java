@@ -9,6 +9,8 @@ public class Application {
 
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private IBoardRepository boardRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

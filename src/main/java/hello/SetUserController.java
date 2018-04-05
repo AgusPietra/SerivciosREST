@@ -11,8 +11,8 @@ public class SetUserController {
     @Autowired
     private IUserRepository userRepository;
 
-    @RequestMapping(value = {"/users/{username}"}, method = RequestMethod.POST)
-    public User user(@PathVariable(value="username") String name) {
+    @RequestMapping(value = {"/users/{userName}"}, method = RequestMethod.POST)
+    public User user(@PathVariable(value="userName") String name) {
 
         User userExists = userRepository.findByUserName(name);
         if(userExists == null)
