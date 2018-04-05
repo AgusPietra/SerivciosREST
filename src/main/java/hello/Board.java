@@ -34,7 +34,7 @@ public class Board {
         return userName;
     }
 
-    public String boardName() {
+    public String getBoardName() {
         return boardName;
     }
 
