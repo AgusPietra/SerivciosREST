@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class GetBoardsController {
+public class GetUserBoardInterestsAndFollowedController {
 
     @Autowired
     private IBoardRepository boardRepository;
