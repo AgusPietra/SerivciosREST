@@ -32,6 +32,11 @@ public class AddNewFollowedInterestOnBoardOfUserController {
                 interest.incrementNumberOfUses();
                 followedInterestRepository.save(interest);//Lo salvo en la tabla de intereses únicos.
             }
+            else {
+                interest.incrementNumberOfUses();
+                followedInterestRepository.save(interest);//Lo salvo en la tabla de intereses únicos. //TODO, esto deberia hacerse con updates, no save.
+            }
+
 
             Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);
 

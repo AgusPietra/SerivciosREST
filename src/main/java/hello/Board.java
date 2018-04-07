@@ -41,9 +41,11 @@ public class Board {
     }
 
     public List<String> getFollowedInterests() {
+        if(followedInterests == null) return new ArrayList<>();//Porque al principio esta lista no se inicializaba si no habia intereses
         return followedInterests;
     }
     public List<String> getFollowedUsers() {
+        if(followedUsers == null) return new ArrayList<>();//Porque al principio esta lista no se inicializaba si no habia usuarios
         return followedUsers;
     }
     public boolean setFollowedInterest(String followedInterest) {

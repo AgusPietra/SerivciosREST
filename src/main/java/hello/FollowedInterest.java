@@ -50,6 +50,10 @@ public class FollowedInterest {
     }
 
     public int incrementNumberOfUses(){return ++timesOnBoards;}
-    public int decrementNumberOfUses(){return --timesOnBoards;}
+    public int decrementNumberOfUses(){
+        if(timesOnBoards>0)
+            return --timesOnBoards;
+        return 0;
+    }
 
 }

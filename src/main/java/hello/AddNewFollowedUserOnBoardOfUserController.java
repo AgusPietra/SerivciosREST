@@ -32,6 +32,10 @@ public class AddNewFollowedUserOnBoardOfUserController {
                 user.incrementNumberOfUses();
                 followedUserRepository.save(user);//Lo salvo en la tabla de seguidos únicos.
             }
+            else{
+                user.incrementNumberOfUses();
+                followedUserRepository.save(user);//Lo salvo en la tabla de seguidos únicos.//TODO, esto deberia hacerse con updates, no save.
+            }
 
             Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);
 
