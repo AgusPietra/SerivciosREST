@@ -13,6 +13,9 @@ public class AddNewInterestOnBoardOfUserController {
     private IBoardRepository boardRepository;
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private IInterestRepository interestRepository;
+
 
     @RequestMapping(value = {"/users/{userName}/boards/{boardName}/interests/{interestName}"}, method = RequestMethod.PUT)
     public Board board(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName,
@@ -28,10 +31,13 @@ public class AddNewInterestOnBoardOfUserController {
                 board = new Board(userName, boardName);
             }
             board.setInterest(interestName);
+
+            Interest interestExists = interestRepository.findByInterestName(interestName);
+            if (interestExists == null) {
+                interestRepository.save(new Interest(interestName));
+            }
+
             boardRepository.save(board);
-
-            //TODO, chequear la lista de intereses únicos para ver si hay que agregarlo.
-
             return board;
 
         }

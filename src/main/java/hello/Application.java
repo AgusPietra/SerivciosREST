@@ -11,6 +11,8 @@ public class Application {
     private IUserRepository userRepository;
     @Autowired
     private IBoardRepository boardRepository;
+    @Autowired
+    private IInterestRepository interestRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
