@@ -9,12 +9,12 @@ import java.util.List;
 
 public class FollowedInterest {
     @Id
-    public String id;
+    private String id;
 
-    public String interestName;
-    public List<String> contents;
-    public Date lastTimeUpdated;
-    public Date lastTimeAsked;
+    private String interestName;
+    private List<String> contents;
+    private Date lastTimeUpdated;
+    private Date lastTimeAsked;
 
     public FollowedInterest() {}
 

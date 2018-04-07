@@ -6,9 +6,9 @@ import org.springframework.data.annotation.Id;
 public class User {
 
     @Id
-    public String id;
+    private String id;
 
-    public String userName;
+    private String userName;
 
     public User() {}
 
