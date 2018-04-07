@@ -15,6 +15,8 @@ public class deleteBoardOfUserController {
     private IUserRepository userRepository;
     @Autowired
     private IFollowedUserRepository followedUserRepository;
+    @Autowired
+    private IFollowedInterestRepository followedInterestRepository;
 
 
     @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.DELETE)
@@ -38,7 +40,7 @@ public class deleteBoardOfUserController {
                     followedInterestRepository.save(interestItem);//Lo actualizo en la tabla de intereses únicos.
                 }
                 for (String followedUserName : boardUsers) {
-                    FollowedUser userItem = followedUserRepository.findByUsertName(followedUserName);
+                    FollowedUser userItem = followedUserRepository.findByUserName(followedUserName);
                     userItem.decrementNumberOfUses(); //Si devolviera 0, podría borrarlo de la lista de usuarios únicos
                     followedUserRepository.save(userItem);//Lo actualizo en la tabla de usuarios únicos.
                 }
