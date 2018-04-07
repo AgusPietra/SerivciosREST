@@ -26,9 +26,7 @@ public class GetUserBoardInterestsAndFollowedController {
 
         Board boardExists = boardRepository.findByUserNameAndBoardName(userName, boardName);
         if(boardExists == null) {
-            List<String> interests = new ArrayList<>();
-            List<String> following = new ArrayList<>();
-            return new Board(userName, "", interests, following);
+            return new Board(userName, "");
         }
         else return boardExists;
     }

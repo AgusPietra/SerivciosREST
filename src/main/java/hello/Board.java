@@ -2,6 +2,7 @@ package hello;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
@@ -15,11 +16,12 @@ public class Board {
 
     public Board() {}
 
-    public Board(String userName, String boardName, List<String> interests,  List<String> following) {
+    public Board(String userName, String boardName) {
         this.userName = userName;
         this.boardName = boardName;
-        this.interests = interests;
-        this.following = following;
+
+        this.interests = new ArrayList<>();
+        this.following = new ArrayList<>();
 
     }
 
@@ -44,4 +46,16 @@ public class Board {
     public List<String> getFollowing() {
         return following;
     }
+    public boolean setInterest(String interest) {
+        //TODO chequear que no esté en la lista previamente
+        interests.add( interest);
+        return true;
+    }
+    public boolean setFollowing(String followed) {
+        //TODO chequear que no esté en la lista previamente
+        following.add( followed);
+        return true;
+    }
+
+
 }

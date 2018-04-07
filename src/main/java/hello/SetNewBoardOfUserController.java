@@ -11,19 +11,23 @@ public class SetNewBoardOfUserController {
 
     @Autowired
     private IBoardRepository boardRepository;
+    @Autowired
+    private IUserRepository userRepository;
 
     @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.POST)
     public Board board(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName) {
 
-        Board boardExists = boardRepository.findByUserNameAndBoardName(userName, boardName);
-        List<String> interests = new ArrayList<>();
-        List<String> following = new ArrayList<>();
+        User userExists = userRepository.findByUserName(userName);
+        if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
+        }
+        else {
+            Board boardExists = boardRepository.findByUserNameAndBoardName(userName, boardName);
 
-        //TODO chequear que el usuario exista.
-
-        if(boardExists == null)
-            boardRepository.save(new Board(userName, boardName, interests, following));
-        return new Board(userName, boardName, interests, following);
+            if (boardExists == null)
+                boardRepository.save(new Board(userName, boardName));
+            return boardExists;
+        }
+        return new Board ("","");
     }
 }
 
