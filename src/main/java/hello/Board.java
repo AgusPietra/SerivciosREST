@@ -11,8 +11,8 @@ public class Board {
 
     public String userName;
     public String boardName;
-    public List<String> interests;
-    public List<String> following;
+    public List<String> followedInterests;
+    public List<String> followedUsers;
 
     public Board() {}
 
@@ -20,8 +20,8 @@ public class Board {
         this.userName = userName;
         this.boardName = boardName;
 
-        this.interests = new ArrayList<>();
-        this.following = new ArrayList<>();
+        this.followedInterests = new ArrayList<>();
+        this.followedUsers = new ArrayList<>();
 
     }
 
@@ -40,22 +40,22 @@ public class Board {
         return boardName;
     }
 
-    public List<String> getInterests() {
-        return interests;
+    public List<String> getFollowedInterests() {
+        return followedInterests;
     }
-    public List<String> getFollowing() {
-        return following;
+    public List<String> getFollowedUsers() {
+        return followedUsers;
     }
-    public boolean setInterest(String interest) {
-        if(interests.contains(interest))
+    public boolean setFollowedInterest(String followedInterest) {
+        if(followedInterests.contains(followedInterest))
             return false;
-        interests.add( interest);
+        followedInterests.add(followedInterest);
         return true;
     }
-    public boolean setFollowing(String followed) {
-        if(following.contains(followed))
+    public boolean setFollowedUser(String followedUser) {
+        if(followedUsers.contains(followedUser))
             return false;
-        following.add( followed);
+        followedUsers.add(followedUser);
         return true;
     }
 

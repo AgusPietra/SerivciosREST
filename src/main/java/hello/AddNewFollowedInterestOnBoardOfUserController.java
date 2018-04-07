@@ -7,36 +7,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class AddNewFollowedOnBoardOfUserController {
+public class AddNewFollowedInterestOnBoardOfUserController {
 
     @Autowired
     private IBoardRepository boardRepository;
     @Autowired
     private IUserRepository userRepository;
     @Autowired
-    private IFollowedRepository followedRepository;
+    private IFollowedInterestRepository followedInterestRepository;
 
 
-    @RequestMapping(value = {"/users/{userName}/boards/{boardName}/following/{followedName}"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/users/{userName}/boards/{boardName}/followedinterests/{followedInterestName}"}, method = RequestMethod.PUT)
     public Board board(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName,
-                       @PathVariable(value="followedName") String followedName) {
+                       @PathVariable(value="followedInterestName") String followedInterestName) {
         User userExists = userRepository.findByUserName(userName);
         if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
 
         }
         else {
-            //Primero Chequeo si es un seguido nuevo para la tabla de seguidos únicos.
-            Followed followedExists = followedRepository.findByFollowedName(followedName);
-            if (followedExists == null) {
-                followedRepository.save(new Followed(followedName));//Lo salvo en la tabla de seguidos únicos.
+            //Primero Chequeo si es un interés nuevo para la tabla de intereses únicos.
+            FollowedInterest interestExists = followedInterestRepository.findByInterestName(followedInterestName);
+            if (interestExists == null) {
+                followedInterestRepository.save(new FollowedInterest(followedInterestName));//Lo salvo en la tabla de intereses únicos.
             }
 
             Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);
 
-            if (board == null) {//Si el board no existe, lo creo con el nuevo followed metido
+            if (board == null) {//Si el board no existe, lo creo con el nuevo interés metido
                 board = new Board(userName, boardName);
             }
-            board.setFollowing(followedName);
+            board.setFollowedInterest(followedInterestName);
             boardRepository.save(board);
 
             return board;

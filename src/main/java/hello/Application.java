@@ -12,9 +12,9 @@ public class Application {
     @Autowired
     private IBoardRepository boardRepository;
     @Autowired
-    private IInterestRepository interestRepository;
+    private IFollowedInterestRepository followedInterestRepository;
     @Autowired
-    private IFollowedRepository followedRepository;
+    private IFollowedUserRepository followedUserRepository;
 
 
     public static void main(String[] args) {

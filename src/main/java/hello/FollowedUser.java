@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Interest {
+public class FollowedUser {
     @Id
     public String id;
 
-    public String interestName;
+    public String userName;
     public List<String> contents;
     public Date lastTimeUpdated;
     public Date lastTimeAsked;
 
-    public Interest() {}
+    public FollowedUser() {}
 
-    public Interest(String interestName) {
-        this.interestName = interestName;
+    public FollowedUser(String userName) {
+        this.userName = userName;
         this.contents = new ArrayList<>();
         lastTimeUpdated = new Date();
         lastTimeUpdated.setTime(0);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
@@ -27,8 +27,8 @@ public class Interest {
         lastTimeAsked.setTime(0);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
     }
 
-    public String getInterestName() {
-        return interestName;
+    public String getFollowedUserName() {
+        return userName;
     }
 
     public List<String> contents() {

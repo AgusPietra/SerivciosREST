@@ -11,13 +11,13 @@ GET /users/{userName}/boards (x) -> Da la lista de boards del usuario {userName}
 
 GET /users/{userName}/boards/{boardName} (x) -> devuelve intereses y usuarios seguidos en el board {boardName} del usuario {userName}
 
-PUT /users/{userName}/boards/{boardName}/following/{followedUser} (x) -> el usuario {userName} empieza a seguir a usuario {followedUser} en el board {boardName}
+PUT /users/{userName}/boards/{boardName}/followedusers/{user} (x) -> el usuario {userName} empieza a seguir a usuario {user} en el board {boardName}
 
-GET /interests/{followedUser} ( ) -> devuelve últimas x publicaciones de usuario lacade. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso). Este sería reemplazado por streaming directo mientras el usuario esté logueado si aparecen publicaciones nuevas de lacade.
+GET /followedusers/{followedUser} ( ) -> devuelve últimas x publicaciones de usuario {followedUser}. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso). Este sería reemplazado por streaming directo mientras el usuario esté logueado si aparecen publicaciones nuevas de lacade.
 
-PUT /users/{userName}/boards/{boardName}/interests/{interest} (x) -> el usuario {userName} empieza a seguir temas de {interest} en el board {boardName}
+PUT /users/{userName}/boards/{boardName}/followedinterests/{interest} (x) -> el usuario {userName} empieza a seguir temas de {interest} en el board {boardName}
 
-GET /interests/racing ( ) -> devuelve cierta cantidad de contenido con cierto criterio respecto a racing. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso).
+GET /interests/{followedInterest} ( ) -> devuelve cierta cantidad de contenido con cierto criterio respecto a {followedInterest}. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso).
 Este sería reemplazado por streaming directo mientras el usuario esté logueado si threads post con más favs respecto a racing.
 
 

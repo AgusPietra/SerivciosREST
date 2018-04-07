@@ -21,11 +21,12 @@ public class SetNewBoardOfUserController {
         if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
         }
         else {
-            Board boardExists = boardRepository.findByUserNameAndBoardName(userName, boardName);
+            Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);
 
-            if (boardExists == null)
-                boardRepository.save(new Board(userName, boardName));
-            return boardExists;
+            if (board == null)
+                board = new Board(userName, boardName);
+            boardRepository.save(new Board(userName, boardName));
+            return board;
         }
         return new Board ("","");
     }
