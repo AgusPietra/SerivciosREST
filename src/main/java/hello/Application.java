@@ -13,6 +13,9 @@ public class Application {
     private IBoardRepository boardRepository;
     @Autowired
     private IInterestRepository interestRepository;
+    @Autowired
+    private IFollowedRepository followedRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
