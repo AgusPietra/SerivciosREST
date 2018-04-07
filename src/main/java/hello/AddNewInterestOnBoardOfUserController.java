@@ -25,19 +25,20 @@ public class AddNewInterestOnBoardOfUserController {
 
         }
         else {
+            //Primero Chequeo si es un interés nuevo para la tabla de intereses únicos.
+            Interest interestExists = interestRepository.findByInterestName(interestName);
+            if (interestExists == null) {
+                interestRepository.save(new Interest(interestName));//Lo salvo en la tabla de intereses únicos.
+            }
+
             Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);
 
             if (board == null) {//Si el board no existe, lo creo con el nuevo interés metido
                 board = new Board(userName, boardName);
             }
             board.setInterest(interestName);
-
-            Interest interestExists = interestRepository.findByInterestName(interestName);
-            if (interestExists == null) {
-                interestRepository.save(new Interest(interestName));
-            }
-
             boardRepository.save(board);
+
             return board;
 
         }

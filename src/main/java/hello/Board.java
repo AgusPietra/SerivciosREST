@@ -47,12 +47,14 @@ public class Board {
         return following;
     }
     public boolean setInterest(String interest) {
-        //TODO chequear que no esté en la lista previamente
+        if(interests.contains(interest))
+            return false;
         interests.add( interest);
         return true;
     }
     public boolean setFollowing(String followed) {
-        //TODO chequear que no esté en la lista previamente
+        if(following.contains(followed))
+            return false;
         following.add( followed);
         return true;
     }
