@@ -26,9 +26,11 @@ public class AddNewFollowedInterestOnBoardOfUserController {
         }
         else {
             //Primero Chequeo si es un interés nuevo para la tabla de intereses únicos.
-            FollowedInterest interestExists = followedInterestRepository.findByInterestName(followedInterestName);
-            if (interestExists == null) {
-                followedInterestRepository.save(new FollowedInterest(followedInterestName));//Lo salvo en la tabla de intereses únicos.
+            FollowedInterest interest = followedInterestRepository.findByInterestName(followedInterestName);
+            if (interest == null) {
+                interest = new FollowedInterest(followedInterestName);
+                interest.incrementNumberOfUses();
+                followedInterestRepository.save(interest);//Lo salvo en la tabla de intereses únicos.
             }
 
             Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);

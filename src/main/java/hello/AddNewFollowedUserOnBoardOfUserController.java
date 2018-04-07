@@ -26,9 +26,11 @@ public class AddNewFollowedUserOnBoardOfUserController {
         }
         else {
             //Primero Chequeo si es un seguido nuevo para la tabla de seguidos únicos.
-            FollowedUser followedExists = followedUserRepository.findByUserName(followedUserName);
-            if (followedExists == null) {
-                followedUserRepository.save(new FollowedUser(followedUserName));//Lo salvo en la tabla de seguidos únicos.
+            FollowedUser user = followedUserRepository.findByUserName(followedUserName);
+            if (user == null) {
+                user = new FollowedUser(followedUserName);
+                user.incrementNumberOfUses();
+                followedUserRepository.save(user);//Lo salvo en la tabla de seguidos únicos.
             }
 
             Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);

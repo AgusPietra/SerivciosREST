@@ -15,6 +15,7 @@ public class FollowedInterest {
     private List<String> contents;
     private Date lastTimeUpdated;
     private Date lastTimeAsked;
+    private int timesOnBoards;
 
     public FollowedInterest() {}
 
@@ -25,6 +26,7 @@ public class FollowedInterest {
         lastTimeUpdated.setTime(0);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
         lastTimeAsked = new Date();
         lastTimeAsked.setTime(0);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
+        timesOnBoards = 0;
     }
 
     public String getFollowedInterestName() {
@@ -46,5 +48,8 @@ public class FollowedInterest {
     public void asked () {
         lastTimeAsked = new Date();
     }
+
+    public int incrementNumberOfUses(){return ++timesOnBoards;}
+    public int decrementNumberOfUses(){return --timesOnBoards;}
 
 }
