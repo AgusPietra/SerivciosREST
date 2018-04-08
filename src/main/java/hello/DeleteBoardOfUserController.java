@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class deleteUserController {
+public class DeleteBoardOfUserController {
 
     @Autowired
     private IUserRepository userRepository;
@@ -19,14 +19,17 @@ public class deleteUserController {
     private IFollowedInterestRepository followedInterestRepository;
 
 
-    @RequestMapping(value = {"/users/{userName}"}, method = RequestMethod.DELETE)
-    public User deleteUser(@PathVariable(value="userName") String userName) {
+    @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.DELETE)
+    public Board deleteBoard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName) {
         User userExists = userRepository.findByUserName(userName);
         if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
         }
         else {
-            List<Board> boards = boardRepository.findByUserName(userName);
-            for(Board board: boards){
+            Board board = boardRepository.findByUserNameAndBoardName(userName, boardName);
+
+            if (board == null)
+                board = new Board(userName, boardName);
+            else {
                 //TODO esto deberia hacerse con querys mas optimos, y hacer updates en vez de saves,
                 //ver: https://www.mkyong.com/mongodb/spring-data-mongodb-update-document/
                 List<String> boardInterests = board.getFollowedInterests();
@@ -41,11 +44,11 @@ public class deleteUserController {
                     userItem.decrementNumberOfUses(); //Si devolviera 0, podría borrarlo de la lista de usuarios únicos
                     followedUserRepository.save(userItem);//Lo actualizo en la tabla de usuarios únicos.
                 }
-                boardRepository.deleteByUserNameAndBoardName(userName, board.getBoardName());
+                boardRepository.deleteByUserNameAndBoardName(userName, boardName);
             }
-            userRepository.deleteByUserName(userName);
+            return board;
         }
-        return new User (userName);
+        return new Board ("","");
     }
 }
 
