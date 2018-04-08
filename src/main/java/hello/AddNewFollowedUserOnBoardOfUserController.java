@@ -29,11 +29,11 @@ public class AddNewFollowedUserOnBoardOfUserController {
             FollowedUser user = followedUserRepository.findByUserName(followedUserName);
             if (user == null) {
                 user = new FollowedUser(followedUserName);
-                user.incrementNumberOfUses();
+                user.asked();
                 followedUserRepository.save(user);//Lo salvo en la tabla de seguidos únicos.
             }
             else{
-                user.incrementNumberOfUses();
+                user.asked();
                 followedUserRepository.save(user);//Lo salvo en la tabla de seguidos únicos.//TODO, esto deberia hacerse con updates, no save.
             }
 
