@@ -27,9 +27,8 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('com.jayway.jsonpath:json-path')
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.twitter4j:twitter4j-core:4.0.4")
     //compile 'org.mongodb:mongo-java-driver:3.6.3'
 }
 
