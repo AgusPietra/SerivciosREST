@@ -17,11 +17,11 @@ GET /users/{userName}/boards/{boardName} (x) -> devuelve intereses y usuarios se
 
 PUT /users/{userName}/boards/{boardName}/followedusers/{user} (x) -> el usuario {userName} empieza a seguir a usuario {user} en el board {boardName}
 
-GET /followedusers/{followedUser} ( ) -> devuelve últimas x publicaciones de usuario {followedUser}. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso). Este sería reemplazado por streaming directo mientras el usuario esté logueado si aparecen publicaciones nuevas de lacade.
+GET /followedusers/{followedUser} (x) -> devuelve últimas x publicaciones de usuario {followedUser}. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso). Este sería reemplazado por streaming directo mientras el usuario esté logueado si aparecen publicaciones nuevas de lacade.
 
 PUT /users/{userName}/boards/{boardName}/followedinterests/{interest} (x) -> el usuario {userName} empieza a seguir temas de {interest} en el board {boardName}
 
-GET /interests/{followedInterest} ( ) -> devuelve cierta cantidad de contenido con cierto criterio respecto a {followedInterest}. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso).
+GET /followedinterests/{followedInterest} ( ) -> devuelve cierta cantidad de contenido con cierto criterio respecto a {followedInterest}. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso).
 Este sería reemplazado por streaming directo mientras el usuario esté logueado si threads post con más favs respecto a racing.
 
 
