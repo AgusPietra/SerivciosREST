@@ -5,7 +5,7 @@ POST /users/{userName} (x) -> crea usuario {userName}
 
 GET /users (x) -> devuelve lista de usarios (no la implemento porque no le veo utilidad)
 
-DELETE /users/{userName} ( ) -> borra usario {userName} junto con sus boards asociados.
+DELETE /users/{userName} (x) -> borra usario {userName} junto con sus boards asociados.
 
 POST /users/{userName}/boards/{boardName} (x) -> crea un nuevo board {boardName}
 
@@ -25,7 +25,5 @@ GET /interests/{followedInterest} ( ) -> devuelve cierta cantidad de contenido c
 Este sería reemplazado por streaming directo mientras el usuario esté logueado si threads post con más favs respecto a racing.
 
 
-
-Faltan los deletes y tal vez sean necesario agregar puts.
 
 
