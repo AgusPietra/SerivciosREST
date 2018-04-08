@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FollowedInterest {
+public class FollowedInterest implements IContents{
     @Id
     private String id;
 
@@ -33,15 +33,6 @@ public class FollowedInterest {
         return interestName;
     }
 
-    public List<String> contents() {
-        return contents;
-    }
-
-    public boolean setContents(List<String> contents) {
-        this.contents = contents;
-        return true;
-    }
-
     public void updated () {
         lastTimeUpdated = new Date();
     }
@@ -56,4 +47,10 @@ public class FollowedInterest {
         return 0;
     }
 
+    public List<String> getContents(){
+        return contents;
+    }
+    public void setContents(List<String> contents) {
+        this.contents = contents;
+    }
 }

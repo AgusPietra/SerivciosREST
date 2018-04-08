@@ -33,15 +33,6 @@ public class FollowedUser {
         return userName;
     }
 
-    public List<String> contents() {
-        return contents;
-    }
-
-    public boolean setContents(List<String> contents) {
-        this.contents = contents;
-        return true;
-    }
-
     public void updated () {
         lastTimeUpdated = new Date();
     }
@@ -54,6 +45,13 @@ public class FollowedUser {
         if(timesOnBoards>0)
             return --timesOnBoards;
         return 0;
+    }
+
+    public List<String> getContents(){
+        return contents;
+    }
+    public void setContents(List<String> contents) {
+        this.contents = contents;
     }
 
 }
