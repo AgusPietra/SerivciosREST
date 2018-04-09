@@ -15,6 +15,7 @@ public class FollowedInterest implements IContents{
     private List<String> contents;
     private Date lastTimeUpdated;
     private Date lastTimeAsked;
+    private int hashCode;
 
     public FollowedInterest() {}
 
@@ -44,4 +45,16 @@ public class FollowedInterest implements IContents{
     public void setContents(List<String> contents) {
         this.contents = contents;
     }
+
+    public int getHashCode() {return this.hashCode; }
+
+    public void setHashCode() {
+        this.hashCode = calculateHashCode(this.contents);
+    }
+
+    public static int calculateHashCode(List<String> contents) {
+        //TODO calculate with contents.
+        return 0;
+    }
+
 }

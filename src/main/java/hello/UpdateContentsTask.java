@@ -3,6 +3,8 @@ package hello;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,13 @@ import twitter4j.QueryResult;
 
 @Component
 public class UpdateContentsTask {
+
+    @Autowired
+    private IFollowedUserRepository followedUserRepository;
+    @Autowired
+    private IFollowedInterestRepository followedInterestRepository;
+
+
     // The factory instance is re-useable and thread safe.
     Twitter twitter = TwitterFactory.getSingleton();
     int numberOfUserTweets = 5;
@@ -26,40 +35,45 @@ public class UpdateContentsTask {
     //TODO la API de twitter permite devolver tweets dentro de un radio de geolocalización del usuario que consulta.
     //Eventualmente se podría incorporar...
 
-    @Scheduled(fixedRate = 5000)//Tiempo en el que actualizo el contenido de twitter
+    @Scheduled(fixedRate = 1000000)//Tiempo en el que actualizo el contenido de twitter
     public void UpdateContentsTime() {
+        List<FollowedUser> users = followedUserRepository.findAll();
+        List<FollowedInterest> interests = followedInterestRepository.findAll();
+
+        //TODO, añadir chequeos de la última vez que un usuario preguntó, y la última vez que se actualizó, mas lo del hash para ver si refrescar o no en base.
         try {
-
             System.out.println("quering users\n");
+            for(FollowedUser user: users) {
 
-            String querySt = "picomonaco";//Username
-            querySt = querySt + "+exclude:retweets";
-            Query query = new Query(querySt);
-            query.count(numberOfUserTweets);
-            //query.setSince();//YYYY-MM-DD//TODO usar el set Since junto con maxDaysBackOfUserTweets para no traer tweets muy viejos.
+                String querySt = user.getFollowedUserName();//Username
+                querySt = querySt + "+exclude:retweets+exclude:replies+exclude:mentions";
+                Query query = new Query(querySt);
+                query.count(numberOfUserTweets);
+                //query.setSince();//YYYY-MM-DD//TODO usar el set Since junto con maxDaysBackOfUserTweets para no traer tweets muy viejos.
 
-            QueryResult result = twitter.search(query);
-            int tweetN = 0;
-            for (Status status : result.getTweets()) {
-                System.out.println("Twit num: " + ++tweetN);
-                System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                QueryResult result = twitter.search(query);
+                int tweetN = 0;
+                for (Status status : result.getTweets()) {
+                    System.out.println("Twit num: " + ++tweetN);
+                    System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                }
             }
-
             System.out.println("");
             System.out.println("quering interests");
+            for(FollowedInterest interest: interests) {
+                String querySt = interest.getFollowedInterestName();//Interest
+                querySt = "#" + querySt + "+exclude:retweets";
+                Query query = new Query(querySt);
+                query.count(numberOfInterestsTweets);
+                query.setResultType(Query.RECENT); //Query.MIXED = Query.POPULAR And Query.RECENT
+                //query.setSince();//YYYY-MM-DD//TODO usar el set Since junto con maxDaysBackOfInterestsTweets para no traer tweets muy viejos.
 
-            querySt = "#Racing";//Interest
-            querySt = querySt + "+exclude:retweets";
-            query = new Query(querySt);
-            query.count(numberOfInterestsTweets);
-            query.setResultType(Query.RECENT); //Query.MIXED = Query.POPULAR And Query.RECENT
-            //query.setSince();//YYYY-MM-DD//TODO usar el set Since junto con maxDaysBackOfInterestsTweets para no traer tweets muy viejos.
-
-            result = twitter.search(query);
-            tweetN = 0;
-            for (Status status : result.getTweets()) {
-                System.out.println("Twit num: " + ++tweetN);
-                System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                QueryResult result = twitter.search(query);
+                int tweetN = 0;
+                for (Status status : result.getTweets()) {
+                    System.out.println("Twit num: " + ++tweetN);
+                    System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                }
             }
         }
         catch (TwitterException e){
