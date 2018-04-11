@@ -1,6 +1,10 @@
+Back-end
+
 Implementar calculateHashCode en FollowedInterest y en FollowedUser.
 
-Implementar DeleteOldInterestsAndUsersFollowedTask para intereses o usuarios por los que hace x tiempo que no se consulta
+Implementar DeleteOldInterestsAndUsersFollowedTask para intereses o usuarios por los que hace x tiempo que no se consulta.
+
+Implementar una cola de mensajes para tener una arquitectura non-blocking.
 
 En AddNewFollowedInterestOnBoardOfUserController en lugar de usar findByInterestName usar un método que solo devuelva el nombre del interés, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
 
@@ -18,3 +22,6 @@ En GetFollowedUserContentsController, followedUserRepository.save(followedUserIt
 Ver como modificar el query de twitter para que traiga los tweets de los usuarios seguidos, más no sus menciones.
 
 
+Front-end
+
+TODO
