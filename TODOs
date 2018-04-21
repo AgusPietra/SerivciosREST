@@ -21,6 +21,8 @@ En GetFollowedUserContentsController, followedUserRepository.save(followedUserIt
 
 Ver como modificar el query de twitter para que traiga los tweets de los usuarios seguidos, más no sus menciones.
 
+@CrossOrigin debe ser condicional a desarrollo y no vincularse para producción en los controladores.
+
 
 Front-end
 
