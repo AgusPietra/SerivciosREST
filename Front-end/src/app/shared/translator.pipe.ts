@@ -7,10 +7,14 @@ import {Pipe, PipeTransform } from '@angular/core';
 })
 export class TranslatorPipe implements PipeTransform {
 
+  rValue: string;
+
   constructor(private translatorService: TranslatorService) {}
 
   transform(value: any, args?: any): any {
-    return this.translatorService.translate(value);
+
+    this.rValue = this.translatorService.translate(value);
+    return this.rValue === undefined ? 'DICT_ERROR' : this.rValue;
   }
 
 
