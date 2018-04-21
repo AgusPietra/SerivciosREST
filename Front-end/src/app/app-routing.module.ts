@@ -9,7 +9,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules} ) //NO FUNCIONA???
+    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules} )
   ],
   exports: [RouterModule]
 })

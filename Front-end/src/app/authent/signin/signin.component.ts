@@ -12,13 +12,19 @@ export class SigninComponent implements OnInit {
 
   constructor(private authService: AuthentService) { }
 
+  username: string;
+
   ngOnInit() {
   }
 
   onSignin(form: NgForm) {
-    const username = form.value.username;
+    this.username = form.value.username;
     const password = form.value.password;
-    this.authService.signinUser(username, password);
+    this.authService.signinUser(this.username, password);
+  }
+
+  getUsername() {
+    return this.username;
   }
 
 }
