@@ -1,10 +1,11 @@
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthentService {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private route: ActivatedRoute) {}
 
   signupUser(email: string, username: string, password: string) {
     //TODO
@@ -14,6 +15,7 @@ export class AuthentService {
   signinUser(username: string, password: string) {
     //TODO
     console.log('sign in with: ' + username + ' ' + password);
+    this.router.navigate(['boards'], {relativeTo: this.route});
   }
 
   logout () {
@@ -22,6 +24,6 @@ export class AuthentService {
   }
 
   isAuthenticated() {
-    false; //TODO
+    return false; //TODO
   }
 }
