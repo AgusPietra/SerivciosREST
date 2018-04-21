@@ -4,7 +4,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AuthentService } from '../authent/authent.service';
-import {CommonModule} from '@angular/common';
+import {SharedModule} from '../shared/shared.module';
+import {TranslatorService} from '../shared/translator.service';
 
 @NgModule({
   declarations: [
@@ -13,14 +14,15 @@ import {CommonModule} from '@angular/common';
   ],
   imports: [
     AppRoutingModule,
-    CommonModule
+    SharedModule
   ],
   exports: [
     AppRoutingModule,
     HeaderComponent
   ],
   providers: [
-    AuthentService
+    AuthentService,
+    TranslatorService
   ]
 })
 export class CoreModule {}
