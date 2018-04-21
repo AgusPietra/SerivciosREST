@@ -7,8 +7,8 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <ng-template [ngIf]="!authentService.isAuthenticated()">
-          <li><a routerLink="/signup">Registrarse</a></li>
-          <li><a routerLink="/signin">Entrar</a></li>
+          <li><a routerLink="/signup">{{'Sign Up' | translate}}</a></li>
+          <li><a routerLink="/signin">{{'Sign In' | translate}}</a></li>
         </ng-template>
 
         <li><a

@@ -5,7 +5,7 @@ export class TranslatorService {
 
   public languages = ['ES', 'EN'];
 
-  public language = 'ES';
+  public language = 'EN';
 
   private dictionary: {[key: string]: TranslatorSet} = {
     'EN' : {
@@ -14,17 +14,21 @@ export class TranslatorService {
         'Welcome' : 'Welcome to the Social Media Aggregator',
         'Email': 'E-mail',
         'User name' : 'User name',
-        'Password' : 'Password'
+        'Password' : 'Password',
+        'Sign Up': 'Sign Up',
+        'Sign In': 'Sign In'
 
       }
     },
     'ES' : {
       languange: 'ES',
       values: {
-        'Welcome' : 'Bienvenido al visualizador de contenidos'
+        'Welcome' : 'Bienvenido al visualizador de contenidos',
         'Email': 'Correo electrónico',
-        'User Name' : 'Nombre de usuario',
-        'Password' : 'Contraseña'
+        'User name' : 'Nombre de usuario',
+        'Password' : 'Contraseña',
+        'Sign Up': 'Registrarse',
+        'Sign In': 'Entrar'
       }
     }
   };
