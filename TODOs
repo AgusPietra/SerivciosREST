@@ -26,4 +26,16 @@ Ver como modificar el query de twitter para que traiga los tweets de los usuario
 
 Front-end
 
-TODO
+Obtener la lista de boards desde el servidor.
+
+Actualizar la lista de boards al servidor.
+
+Obtener la info de los boards seleccionados para mostrar en pantalla el contenido de twitter desde el servidor.
+
+Hacer que el signin y el signup realmente funcionen como tales (siempre te deja pasar).
+
+Hacer que el botón de crear board haga algo.
+
+Agregar botones para editar boards y eliminar boards.
+
+Agregar botones para agregar intereses y eliminarlos de un board.
