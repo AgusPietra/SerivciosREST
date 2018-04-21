@@ -31,7 +31,10 @@ export class TranslatorService {
         'Sign In': 'Sign In',
         'Language': 'Language',
         'Spanish': 'Spanish',
-        'English': 'English'
+        'English': 'English',
+        'New board': 'New board',
+        'Followed users': 'Followed users',
+        'Followed interests': 'Followed interests'
 
       }
     },
@@ -46,7 +49,10 @@ export class TranslatorService {
         'Sign In': 'Entrar',
         'Language': 'Idioma',
         'Spanish': 'Español',
-        'English': 'Inglés'
+        'English': 'Inglés',
+        'New board': 'Nuevo tablero',
+        'Followed users': 'Usuarios seguidos',
+        'Followed interests': 'Intereses seguidos'
       }
     }
   };

@@ -6,6 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { AuthentService } from '../authent/authent.service';
 import {SharedModule} from '../shared/shared.module';
 import {TranslatorService} from '../shared/translator.service';
+import {BoardsService} from '../boards/boards.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {TranslatorService} from '../shared/translator.service';
   ],
   providers: [
     AuthentService,
-    TranslatorService
+    TranslatorService,
+    BoardsService
   ]
 })
 export class CoreModule {}

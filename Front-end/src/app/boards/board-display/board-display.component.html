@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ board.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>{{ 'Followed users' | translate }}</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let followedUser of board.followedUsers">
+        {{ '@' + followedUser }}
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>{{ 'Followed interests' | translate }}</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let followedInterest of board.followedInterests">
+        {{ '#' + followedInterest }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,3 +1,15 @@
-<p>
-  board-list workssss!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewBoard()">{{'New board' | translate}}</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-board-item
+      *ngFor="let boardEl of boards; let i = index"
+      [board]="boardEl"
+      [index]="i"></app-board-item>
+  </div>
+</div>
+
