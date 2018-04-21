@@ -16,6 +16,13 @@
           (click)="onLogout()"
           *ngIf="authentService.isAuthenticated()">Logout</a></li>
 
+        <li class="dropdown" appDropdown>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button" >{{'Language' | translate}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a style="cursor: pointer;" *ngFor="let language of languages; let i = index" (click)="onSetLanguage(i)">{{language | translate}}</a></li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>

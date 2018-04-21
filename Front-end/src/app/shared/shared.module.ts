@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TranslatorPipe} from './translator.pipe';
+import {DropdownDirective} from './dropdown.directive';
 
 @NgModule({
   imports: [],
-  declarations: [ TranslatorPipe ],
+  declarations: [
+    TranslatorPipe,
+    DropdownDirective ],
   exports: [
     CommonModule,
-    TranslatorPipe
+    TranslatorPipe,
+    DropdownDirective
   ]
 })
 export class SharedModule { }

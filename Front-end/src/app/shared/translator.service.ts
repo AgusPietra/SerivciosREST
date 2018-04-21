@@ -3,32 +3,50 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class TranslatorService {
 
-  public languages = ['ES', 'EN'];
+  private languages = ['Spanish', 'English'];
 
-  public language = 'EN';
+  private language = 'English';
+
+  public getLanguages(): string[] {
+    return this.languages.slice();
+  }
+
+  public setLanguage(language: string){
+    this.language = language;
+  }
+
+  public setLanguageIndex(index: number){
+    this.language = this.languages[index];
+  }
 
   private dictionary: {[key: string]: TranslatorSet} = {
-    'EN' : {
-      languange: 'EN',
+    'English' : {
+      languange: 'English',
       values: {
         'Welcome' : 'Welcome to the Social Media Aggregator',
         'Email': 'E-mail',
         'User name' : 'User name',
         'Password' : 'Password',
         'Sign Up': 'Sign Up',
-        'Sign In': 'Sign In'
+        'Sign In': 'Sign In',
+        'Language': 'Language',
+        'Spanish': 'Spanish',
+        'English': 'English'
 
       }
     },
-    'ES' : {
-      languange: 'ES',
+    'Spanish' : {
+      languange: 'Spanish',
       values: {
         'Welcome' : 'Bienvenido al visualizador de contenidos',
         'Email': 'Correo electrónico',
         'User name' : 'Nombre de usuario',
         'Password' : 'Contraseña',
         'Sign Up': 'Registrarse',
-        'Sign In': 'Entrar'
+        'Sign In': 'Entrar',
+        'Language': 'Idioma',
+        'Spanish': 'Español',
+        'English': 'Inglés'
       }
     }
   };
