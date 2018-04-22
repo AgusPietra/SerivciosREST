@@ -1,4 +1,5 @@
 import {Board} from './board.model';
+import {Subject} from 'rxjs/Subject';
 
 export class BoardsService {
   private boards: Board[] = [
@@ -21,8 +22,11 @@ export class BoardsService {
     )
   ];
 
+  boardsChanged = new Subject<Board[]>();
+
   setBoards(boards: Board[]) {
     this.boards = boards;
+    this.boardsChanged.next(this.boards.slice());
   }
 
   getBoards() {
@@ -35,9 +39,12 @@ export class BoardsService {
 
   addBoard(board: Board) {
     this.boards.push(board);
+    this.boardsChanged.next(this.boards.slice());
   }
 
   updateBoard(board: Board, index: number) {
     this.boards[index] = board;
+    this.boardsChanged.next(this.boards.slice());
   }
+
 }

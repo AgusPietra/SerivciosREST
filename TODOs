@@ -34,8 +34,6 @@ Obtener la info de los boards seleccionados para mostrar en pantalla el contenid
 
 Hacer que el signin y el signup realmente funcionen como tales (siempre te deja pasar).
 
-Hacer que cuando se guarde un nuevo board, se actualice en la lista (mediante subjects) y en el servidor.
-
 Agregar botón para eliminar boards.
 
 
