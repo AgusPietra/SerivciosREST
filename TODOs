@@ -1,27 +1,34 @@
 Back-end
 
+
 Implementar calculateHashCode en FollowedInterest y en FollowedUser.
 
 Implementar DeleteOldInterestsAndUsersFollowedTask para intereses o usuarios por los que hace x tiempo que no se consulta.
 
 Implementar una cola de mensajes para tener una arquitectura non-blocking.
 
-En AddNewFollowedInterestOnBoardOfUserController en lugar de usar findByInterestName usar un método que solo devuelva el nombre del interés, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
-
-En AddNewFollowedUserOnBoardOfUserController en lugar de usar findByUserName usar un método que solo devuelva el nombre del usuario, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
-
-
-En DeleteBoardOfUserController, findByUserNameAndBoardName debería retornar solo el usuario y el board (en caso de encontrarlo), más no las listas.
-
-En DeleteUserController, boardRepository.findByUserName debería devolver solo los nombres de los boards, y no sus listas asociadas.
-
-En GetFollowedInterestContentsController, followedInterestRepository.save(followedInterestItem) debe actualizar solo la fecha de pregunta. 
-
-En GetFollowedUserContentsController, followedUserRepository.save(followedUserItem) debe actualizar solo la fecha de pregunta. 
-
 Ver como modificar el query de twitter para que traiga los tweets de los usuarios seguidos, más no sus menciones.
 
+Implementar interfaces para los componentes que aún no tengan.
+
 @CrossOrigin debe ser condicional a desarrollo y no vincularse para producción en los controladores.
+
+Optimizaciones DB req{
+	En AddNewFollowedInterestOnBoardOfUserController en lugar de usar findByInterestName usar un método que solo devuelva el nombre del interés, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
+
+	En AddNewFollowedUserOnBoardOfUserController en lugar de usar findByUserName usar un método que solo devuelva el nombre del usuario, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
+
+	En DeleteBoardOfUserController, findByUserNameAndBoardName debería retornar solo el usuario y el board (en caso de encontrarlo), más no las listas.
+
+	En DeleteUserController, boardRepository.findByUserName debería devolver solo los nombres de los boards, y no sus listas asociadas.
+
+	En GetFollowedInterestContentsController, followedInterestRepository.save(followedInterestItem) debe actualizar solo la fecha de pregunta. 
+
+	En GetFollowedUserContentsController, followedUserRepository.save(followedUserItem) debe actualizar solo la fecha de pregunta. 
+}
+
+
+
 
 
 Front-end
