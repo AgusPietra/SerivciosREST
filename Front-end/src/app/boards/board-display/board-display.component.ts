@@ -27,4 +27,8 @@ export class BoardDisplayComponent implements OnInit {
       );
   }
 
+  onEdit(){
+    this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
 }

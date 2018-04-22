@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Board} from '../board.model';
 import {BoardsService} from '../boards.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-board-list',
@@ -11,7 +12,9 @@ export class BoardListComponent implements OnInit {
 
   boards: Board[];
 
-  constructor(private boardsService: BoardsService) { }
+  constructor(private boardsService: BoardsService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -19,7 +22,6 @@ export class BoardListComponent implements OnInit {
   }
 
   onNewBoard(){
-    //TODO
-    console.log('new board');
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 }

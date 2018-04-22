@@ -29,7 +29,15 @@ export class BoardsService {
     return this.boards.slice();
   }
 
-  getBoard(index: number){
+  getBoard(index: number) {
     return this.boards[index];
+  }
+
+  addBoard(board: Board) {
+    this.boards.push(board);
+  }
+
+  updateBoard(board: Board, index: number) {
+    this.boards[index] = board;
   }
 }

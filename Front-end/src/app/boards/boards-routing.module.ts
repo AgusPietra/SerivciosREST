@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BoardsComponent } from './boards.component';
-import {BoardItemComponent} from './board-list/board-item/board-item.component';
 import {BoardDisplayComponent} from './board-display/board-display.component';
+import {BoardEditComponent} from './board-edit/board-edit.component';
 
 const boardsRoutes: Routes = [
   { path: '', component: BoardsComponent, children: [
-    { path: ':id', component: BoardDisplayComponent }
+    { path: 'new', component: BoardEditComponent },
+    { path: ':id', component: BoardDisplayComponent },
+    { path: ':id/edit', component: BoardEditComponent }
   ] },
 ];
 

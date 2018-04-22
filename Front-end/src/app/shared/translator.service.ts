@@ -33,7 +33,12 @@ export class TranslatorService {
         'Spanish': 'Spanish',
         'English': 'English',
         'New board': 'New board',
-        'Interests': 'Interests'
+        'Interests': 'Interests',
+        'Save': 'Save',
+        'Cancel': 'Cancel',
+        'Name': 'Name',
+        'Add interest': 'Add interest',
+        'Edit': 'Edit',
 
       }
     },
@@ -50,7 +55,12 @@ export class TranslatorService {
         'Spanish': 'Español',
         'English': 'Inglés',
         'New board': 'Nuevo tablero',
-        'Interests': 'Intereses'
+        'Interests': 'Intereses',
+        'Save': 'Guardar',
+        'Cancel': 'Cancelar',
+        'Name': 'Nombre',
+        'Add interest': 'Agregar interés',
+        'Edit': 'Editar',
       }
     }
   };

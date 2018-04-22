@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import {BoardsRoutingModule} from './boards-routing.module';
 import { BoardListComponent } from './board-list/board-list.component';
 import { BoardDisplayComponent } from './board-display/board-display.component';
+import { BoardEditComponent } from './board-edit/board-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BoardDisplayComponent } from './board-display/board-display.component';
     BoardItemComponent,
     BoardListComponent,
     BoardDisplayComponent,
+    BoardEditComponent,
   ],
   imports: [
     CommonModule,

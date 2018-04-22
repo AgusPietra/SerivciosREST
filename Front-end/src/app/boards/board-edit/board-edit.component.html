@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="boardForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!boardForm.valid">{{'Save' | translate}}</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">{{'Cancel' | translate}}</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">{{'Name'|translate}}</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="interests">
+          <div
+            class="row"
+            *ngFor="let interestCtrl of boardForm.get('interests').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs-8">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="interest">
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteInterest(i)">X</button>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-xs-12">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddInterest()">{{'Add interest'|translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
