@@ -39,9 +39,7 @@ export class BoardEditComponent implements OnInit {
       if (board['interests']) {
         for (const interest of board.interests) {
           boardInterests.push(
-            new FormGroup({
-              'interest': new FormControl(interest, [Validators.required, Validators.pattern(/^(@|#)/)]),
-            })
+            new FormControl(interest, [Validators.required, Validators.pattern(/^(@|#)/)]),
           );
         }
       }
@@ -51,6 +49,7 @@ export class BoardEditComponent implements OnInit {
       'name': new FormControl(boardName, Validators.required),
       'interests': boardInterests
     });
+    console.log(this.boardForm);
   }
 
   onSubmit() {
@@ -68,9 +67,7 @@ export class BoardEditComponent implements OnInit {
 
   onAddInterest() {
     (<FormArray>this.boardForm.get('interests')).push(
-      new FormGroup({
-        'interest': new FormControl(null, [Validators.required, Validators.pattern(/^(@|#)/)]),
-      })
+      new FormControl(null, [Validators.required, Validators.pattern(/^(@|#)/)]),
     );
   }
 

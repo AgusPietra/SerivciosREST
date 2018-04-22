@@ -27,13 +27,13 @@
           <div
             class="row"
             *ngFor="let interestCtrl of boardForm.get('interests').controls; let i = index"
-            [formGroupName]="i"
             style="margin-top: 10px;">
             <div class="col-xs-8">
               <input
                 type="text"
                 class="form-control"
-                formControlName="interest">
+                [formControlName]="i"
+               >
             </div>
             <div class="col-xs-2">
               <button
