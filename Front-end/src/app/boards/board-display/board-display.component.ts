@@ -31,4 +31,8 @@ export class BoardDisplayComponent implements OnInit {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
+  onDelete() {
+    this.boardsService.deleteBoard(this.id);
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
 }

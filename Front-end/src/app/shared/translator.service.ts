@@ -39,7 +39,7 @@ export class TranslatorService {
         'Name': 'Name',
         'Add interest': 'Add interest',
         'Edit': 'Edit',
-
+        'Delete': 'Delete',
       }
     },
     'Spanish' : {
@@ -61,6 +61,7 @@ export class TranslatorService {
         'Name': 'Nombre',
         'Add interest': 'Agregar interés',
         'Edit': 'Editar',
+        'Delete': 'Borrar',
       }
     }
   };

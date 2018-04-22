@@ -47,4 +47,9 @@ export class BoardsService {
     this.boardsChanged.next(this.boards.slice());
   }
 
+  deleteBoard(index: number) {
+    this.boards.splice(index, 1);
+    this.boardsChanged.next(this.boards.slice());
+  }
+
 }
