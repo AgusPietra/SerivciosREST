@@ -1,11 +1,10 @@
 export class Board {
   public name: string;
-  public followedUsers: string[];
+  public interests: string[];
   public followedInterests: string[];
 
-  constructor(name: string, followedUsers: string[], followedInterests: string[]) {
+  constructor(name: string, interests: string[]) {
     this.name = name;
-    this.followedUsers = followedUsers;
-    this.followedInterests = followedInterests;
+    this.interests = interests;
   }
 }

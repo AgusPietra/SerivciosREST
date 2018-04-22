@@ -33,8 +33,7 @@ export class TranslatorService {
         'Spanish': 'Spanish',
         'English': 'English',
         'New board': 'New board',
-        'Followed users': 'Followed users',
-        'Followed interests': 'Followed interests'
+        'Interests': 'Interests'
 
       }
     },
@@ -51,8 +50,7 @@ export class TranslatorService {
         'Spanish': 'Español',
         'English': 'Inglés',
         'New board': 'Nuevo tablero',
-        'Followed users': 'Usuarios seguidos',
-        'Followed interests': 'Intereses seguidos'
+        'Interests': 'Intereses'
       }
     }
   };

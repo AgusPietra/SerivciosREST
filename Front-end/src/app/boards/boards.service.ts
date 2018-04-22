@@ -5,23 +5,19 @@ export class BoardsService {
     new Board (
       'Test board',
       [
-        'Pepe',
-        'Pipo'
-      ],
-      [
-        'Chess',
-        'Cheese'
+        '@Pepe',
+        '#Chess',
+        '#Cheese',
+        '@Pipo'
       ]
     ),
     new Board (
       'Another board',
       [
-        'Domi',
-        'Dante'
+        '@Domi',
+        '@Dante',
+        '#all'
       ],
-      [
-        'all'
-      ]
     )
   ];
 
