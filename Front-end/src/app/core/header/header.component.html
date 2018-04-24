@@ -14,7 +14,9 @@
         <li><a
           style="cursor: pointer;"
           (click)="onLogout()"
-          *ngIf="authentService.isAuthenticated()">Logout</a></li>
+          *ngIf="authentService.isAuthenticated()"
+          routerLink="/signin"
+          >Logout</a></li>
 
         <li class="dropdown" appDropdown>
           <a style="cursor: pointer;" class="dropdown-toggle" role="button" >{{'Language' | translate}} <span class="caret"></span></a>

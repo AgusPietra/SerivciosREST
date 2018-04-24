@@ -34,7 +34,8 @@ export class AuthentService {
   }
 
   logout () {
-    //TODO
+    this.authenticated = false;
+    this.authenticatedUserName = null;
     console.log('logging out');
   }
 
