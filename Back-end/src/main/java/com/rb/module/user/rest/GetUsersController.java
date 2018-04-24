@@ -23,7 +23,7 @@ public class GetUsersController {
 
 
     @RequestMapping(value = {"/users"}, method = RequestMethod.GET)
-    public List<String> user() {
+    public List<String> GetUsers() {
 
         List<User> result = this.userService.findAllUsers();
         List<String> users= new ArrayList<>();
