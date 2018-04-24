@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AuthentService } from '../authent.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ServerResponse} from '../../shared/server-response.model';
+import {User} from '../user.model';
 
 @Component({
   selector: 'app-signup',
@@ -24,10 +25,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(form: NgForm) {
-    const email = form.value.email;
-    const username = form.value.username;
-    const password = form.value.password;
-    this.authService.signupUser(email, username, password)
+    this.authService.signupUser(new User(form.value.username, form.value.password, form.value.email))
       .subscribe(
         (data: ServerResponse) => {
           if ( +data.code === 0 ) {

@@ -10,10 +10,22 @@ public class User {
 
     private String userName;
 
+    private String password;
+
+    private String email;
+
     public User() {}
 
     public User(String userName) {
         this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -26,5 +38,14 @@ public class User {
     public String getUserName() {
         return this.userName;
     }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
 }
 
