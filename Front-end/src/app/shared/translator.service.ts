@@ -41,6 +41,8 @@ export class TranslatorService {
         'Edit': 'Edit',
         'Delete': 'Delete',
         'User name not available': 'User name not available',
+        'Unknown user name': 'Unknown user name',
+        'Password error': 'Password error',
       }
     },
     'Spanish' : {
@@ -64,6 +66,8 @@ export class TranslatorService {
         'Edit': 'Editar',
         'Delete': 'Borrar',
         'User name not available': 'Nombre de usuario no disponible',
+        'Unknown user name': 'Nombre de usuario desconocido',
+        'Password error': 'Contraseña incorrecta',
       }
     }
   };

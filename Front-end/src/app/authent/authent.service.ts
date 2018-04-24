@@ -16,19 +16,21 @@ export class AuthentService {
   }
 
   signupUser(user: User) {
-    console.log('sign up with: ' + user.email + ' ' + user.userName+ ' ' + user.password);
-
-    //TODO, hacer metodo real de sign up, de momento solo registra el usuario, y no hace ningún chequeo de si existe.
-    return this.httpClient.post<ServerResponse>('http://localhost:8080/users/' + user.userName, user, {
+    // console.log('sign up with: ' + user.email + ' ' + user.userName+ ' ' + user.password);
+    //TODO, hacer metodo real de sign up, con seguridad
+    return this.httpClient.post<ServerResponse>('http://localhost:8080/users', user, {
       observe: 'body',
       params: new HttpParams()
     });
   }
 
-  signinUser(username: string, password: string) {
-    //TODO
-    console.log('sign in with: ' + username + ' ' + password);
-    return true;
+  signinUser(user: User) {
+    // console.log('sign in with: ' + user.email + ' ' + user.userName+ ' ' + user.password);
+    //TODO, hacer metodo real de sign in, con seguridad, por ejemplo con oauth2
+    return this.httpClient.post<ServerResponse>('http://localhost:8080/users/' + user.userName, user, {
+      observe: 'body',
+      params: new HttpParams()
+    });
   }
 
   logout () {

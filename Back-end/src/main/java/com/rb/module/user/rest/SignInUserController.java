@@ -8,23 +8,26 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-public class SetNewUserController {
+public class SignInUserController {
 
     private UserService userService;
     @Autowired
-    public SetNewUserController(UserService userService) {
+    public SignInUserController(UserService userService) {
         this.userService = userService;
     }
 
     @RequestMapping(value = {"/users/{userName}"}, method = RequestMethod.POST)
-    public Code SetUser(@PathVariable(value="userName") String name) {
+    public Code CheckUser(@PathVariable(value="userName") String name, @RequestBody User user) {
 
         User userExists = this.userService.findByUserName(name);
         if(userExists == null){
             this.userService.save(new User(name));
-            return new Code(0);//User created OK
+            return new Code(-1);//Non existing user
         }
-        return new Code(-1);//Existing user
+        if(userExists.getPassword().equals(user.getPassword())) {
+            return new Code(0);
+        }
+
+        return new Code(-2);//Invalid password
     }
 }
-

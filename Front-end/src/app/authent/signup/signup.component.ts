@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
             this.authService.setAuthenticated(form.value.username);
             this.router.navigate(['../boards'], {relativeTo: this.route});
           }
-          else {
+          if ( +data.code === -1 ) {
             this.userAlreadyTaken = true;
           }
         },
@@ -41,12 +41,6 @@ export class SignupComponent implements OnInit {
           console.log(error);
         }
       );
-    // this.dataStorageService.storeRecipes()
-    //   .subscribe(
-    //     (response) => {
-    //       console.log(response);
-    //     }
-    //   );
   }
 
   onUsernameChange() {

@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 
 import { AuthentService } from '../authent.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../user.model';
+import {ServerResponse} from '../../shared/server-response.model';
 
 @Component({
   selector: 'app-signin',
@@ -11,9 +13,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
+  private notRegisteredUserName: Boolean;
+  private invalidPassword: Boolean;
+
   constructor(private authService: AuthentService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+    this.notRegisteredUserName = false;
+    this.invalidPassword = false;
+  }
 
   username: string;
 
@@ -21,15 +29,40 @@ export class SigninComponent implements OnInit {
   }
 
   onSignin(form: NgForm) {
-    this.username = form.value.username;
-    const password = form.value.password;
-    if (this.authService.signinUser(this.username, password)) {
-      this.router.navigate(['../boards'], {relativeTo: this.route});
-    }
+    this.authService.signinUser(new User(form.value.username, form.value.password, form.value.email))
+      .subscribe(
+        (data: ServerResponse) => {
+          console.log(data.code);
+          if ( +data.code === 0 ) {
+            this.authService.setAuthenticated(form.value.username);
+            this.router.navigate(['../boards'], {relativeTo: this.route});
+          }
+          if ( +data.code === -1 ){
+            this.notRegisteredUserName = true;
+          }
+          if ( +data.code === -2 ){
+            this.invalidPassword = true;
+          }
+        },
+        (error) => {
+          console.log('error msg: ');
+          console.log(error);
+        }
+      );
   }
+
 
   getUsername() {
     return this.username;
+  }
+
+  onUsernameChange(){
+    this.notRegisteredUserName = false;
+    this.invalidPassword = false;
+  }
+
+  onPasswordChange(){
+    this.invalidPassword = false;
   }
 
 }
