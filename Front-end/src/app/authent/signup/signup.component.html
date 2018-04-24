@@ -7,7 +7,8 @@
       </div>
       <div class="form-group">
         <label for="username">{{'User name' | translate}}</label>
-        <input type="text" id="username" name="username" ngModel class="form-control" required>
+        <input type="text" id="username" name="username" ngModel class="form-control" (focus)="onUsernameChange()" required>
+        <span *ngIf="userAlreadyTaken">{{'User name not available' | translate}}</span>
       </div>
       <div class="form-group">
         <label for="password">{{'Password' | translate}}</label>

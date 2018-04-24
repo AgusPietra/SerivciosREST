@@ -40,6 +40,7 @@ export class TranslatorService {
         'Add interest': 'Add interest',
         'Edit': 'Edit',
         'Delete': 'Delete',
+        'User name not available': 'User name not available',
       }
     },
     'Spanish' : {
@@ -62,6 +63,7 @@ export class TranslatorService {
         'Add interest': 'Agregar interés',
         'Edit': 'Editar',
         'Delete': 'Borrar',
+        'User name not available': 'Nombre de usuario no disponible',
       }
     }
   };

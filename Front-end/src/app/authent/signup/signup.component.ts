@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { AuthentService } from '../authent.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ServerResponse} from '../../shared/server-response.model';
 
 @Component({
   selector: 'app-signup',
@@ -11,9 +12,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+  private userAlreadyTaken: Boolean;
+
   constructor(private authService: AuthentService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+    this.userAlreadyTaken = false;
+  }
 
   ngOnInit() {
   }
@@ -24,9 +29,17 @@ export class SignupComponent implements OnInit {
     const password = form.value.password;
     this.authService.signupUser(email, username, password)
       .subscribe(
-        (response) => {
-          console.log(response);
-          this.router.navigate(['../boards'], {relativeTo: this.route});
+        (data: ServerResponse) => {
+          if ( +data.code === 0 ) {
+            this.router.navigate(['../boards'], {relativeTo: this.route});
+          }
+          else {
+            this.userAlreadyTaken = true;
+          }
+        },
+        (error) => {
+          console.log('error msg: ');
+          console.log(error);
         }
       );
     // this.dataStorageService.storeRecipes()
@@ -35,6 +48,10 @@ export class SignupComponent implements OnInit {
     //       console.log(response);
     //     }
     //   );
+  }
+
+  onUsernameChange() {
+    this.userAlreadyTaken = false;
   }
 
 }
