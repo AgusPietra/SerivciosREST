@@ -21,7 +21,6 @@ public class SignInUserController {
 
         User userExists = this.userService.findByUserName(name);
         if(userExists == null){
-            this.userService.save(new User(name));
             return new Code(-1);//Non existing user
         }
         if(userExists.getPassword().equals(user.getPassword())) {
