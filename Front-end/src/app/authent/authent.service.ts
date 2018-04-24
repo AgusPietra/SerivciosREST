@@ -7,7 +7,13 @@ import {User} from './user.model';
 @Injectable()
 export class AuthentService {
 
-  constructor(private httpClient: HttpClient) {}
+  private authenticated: boolean;
+
+  private authenticatedUserName: string;
+
+  constructor(private httpClient: HttpClient) {
+    this.authenticated = false;
+  }
 
   signupUser(user: User) {
     console.log('sign up with: ' + user.email + ' ' + user.userName+ ' ' + user.password);
@@ -31,6 +37,11 @@ export class AuthentService {
   }
 
   isAuthenticated() {
-    return false; //TODO
+    return this.authenticated;
+  }
+
+  setAuthenticated(userName: string) {
+    this.authenticated = true;
+    this.authenticatedUserName = userName;
   }
 }

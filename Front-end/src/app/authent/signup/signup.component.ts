@@ -29,6 +29,7 @@ export class SignupComponent implements OnInit {
       .subscribe(
         (data: ServerResponse) => {
           if ( +data.code === 0 ) {
+            this.authService.setAuthenticated(form.value.username);
             this.router.navigate(['../boards'], {relativeTo: this.route});
           }
           else {

@@ -4,12 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { BoardsComponent } from './boards.component';
 import {BoardDisplayComponent} from './board-display/board-display.component';
 import {BoardEditComponent} from './board-edit/board-edit.component';
+import {AuthentGuard} from '../authent/authent-guard.service';
 
 const boardsRoutes: Routes = [
-  { path: '', component: BoardsComponent, children: [
-    { path: 'new', component: BoardEditComponent },
-    { path: ':id', component: BoardDisplayComponent },
-    { path: ':id/edit', component: BoardEditComponent }
+  { path: '', component: BoardsComponent, canActivate: [AuthentGuard], children: [
+    { path: 'new', component: BoardEditComponent, canActivate: [AuthentGuard] },
+    { path: ':id', component: BoardDisplayComponent, canActivate: [AuthentGuard] },
+    { path: ':id/edit', component: BoardEditComponent, canActivate: [AuthentGuard] }
   ] },
 ];
 
@@ -18,6 +19,6 @@ const boardsRoutes: Routes = [
     RouterModule.forChild(boardsRoutes)
   ],
   exports: [RouterModule],
-  providers: []
+  providers: [AuthentGuard]
 })
 export class BoardsRoutingModule {}
