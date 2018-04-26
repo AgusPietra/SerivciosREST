@@ -29,16 +29,6 @@ public class DeleteBoardOfUserController {
             Board board = this.boardService.findByUserNameAndBoardName(userName, boardName);
 
             if (board != null) {
-                //TODO esto deberia hacerse con querys mas optimos, y hacer updates en vez de saves,
-                //ver: https://www.mkyong.com/mongodb/spring-data-mongodb-update-document/
-/*                List<String> boardInterests = board.getFollowedInterests();
-                List<String> boardUsers = board.getFollowedUsers();
-                for (String interestName : boardInterests) {
-                    Interest interestItem = interestRepository.findByInterestName(interestName);
-                    interestItem.decrementNumberOfUses(); //Si devolviera 0, podría borrarlo de la lista de intereses únicos
-                    followedInterestRepository.save(interestItem);//Lo actualizo en la tabla de intereses únicos.
-                }
-                */
                 this.boardService.deleteByUserNameAndBoardName(userName, boardName);
             }
         }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Board} from '../board.model';
 import {BoardsService} from '../boards.service';
+import {BoardsRestService} from '../boards-rest.service';
 
 @Component({
   selector: 'app-board-display',
@@ -14,6 +15,7 @@ export class BoardDisplayComponent implements OnInit {
   id: number;
 
   constructor(private boardsService: BoardsService,
+              private boardsRestService: BoardsRestService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -32,6 +34,7 @@ export class BoardDisplayComponent implements OnInit {
   }
 
   onDelete() {
+    this.boardsRestService.deleteBoard(this.boardsService.getBoard(this.id));
     this.boardsService.deleteBoard(this.id);
     this.router.navigate(['../'], {relativeTo: this.route});
   }

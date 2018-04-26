@@ -1,6 +1,5 @@
 import {Board} from './board.model';
 import {Subject} from 'rxjs/Subject';
-import {BoardsRestService} from './boards-rest.service';
 
 export class BoardsService {
   private boards: Board[];

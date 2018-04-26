@@ -123,7 +123,29 @@ export class BoardsRestService implements OnInit{
 
   }
   public deleteBoard(board: Board) {
-    this.serverAlive.next(false);
-    console.log('Deleting board of server');//TODO
+    board.userName = this.authentService.authenticatedUserName;
+    console.log('deleting board of server');
+    console.log('user name: ' + board.userName);
+    console.log('board name: ' + board.boardName);
+
+    this.httpClient.delete<ServerResponse>('http://localhost:8080/users/' + board.userName + '/boards/' + board.boardName, {
+      observe: 'body',
+      params: new HttpParams()
+    }).subscribe(
+      (data: ServerResponse) => {
+        if ( +data.code === 0 ) {
+          this.serverAlive.next(true);
+          console.log('board deleted ok');
+        }
+        if ( +data.code === -1 ) {
+          console.log('board not deleted ok');
+          this.serverAlive.next(false);//TODO, diferenciar caso, hay comunicación pero también un error interno
+        }
+      },
+      (error) => {
+        console.log('board deleted not performed due to cant connect');
+        this.serverAlive.next(false);
+      }
+    );
   }
 }
