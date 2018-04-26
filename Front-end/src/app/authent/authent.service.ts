@@ -9,15 +9,13 @@ export class AuthentService {
 
   private authenticated: boolean;
 
-  private authenticatedUserName: string;
+  public authenticatedUserName: string;
 
   constructor(private httpClient: HttpClient) {
     this.authenticated = false;
   }
 
   signupUser(user: User) {
-    // console.log('sign up with: ' + user.email + ' ' + user.userName+ ' ' + user.password);
-    //TODO, hacer metodo real de sign up, con seguridad
     return this.httpClient.post<ServerResponse>('http://localhost:8080/users', user, {
       observe: 'body',
       params: new HttpParams()

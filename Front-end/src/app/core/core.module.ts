@@ -7,6 +7,7 @@ import { AuthentService } from '../authent/authent.service';
 import {SharedModule} from '../shared/shared.module';
 import {TranslatorService} from '../shared/translator.service';
 import {BoardsService} from '../boards/boards.service';
+import {BoardsRestService} from '../boards/boards-rest.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {BoardsService} from '../boards/boards.service';
   providers: [
     AuthentService,
     TranslatorService,
-    BoardsService
+    BoardsService,
+    BoardsRestService
   ]
 })
 export class CoreModule {}

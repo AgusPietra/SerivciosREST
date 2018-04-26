@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
 
   private userAlreadyTaken: Boolean;
 
-  constructor(private authService: AuthentService,
+  constructor(private authentService: AuthentService,
               private router: Router,
               private route: ActivatedRoute) {
     this.userAlreadyTaken = false;
@@ -25,11 +25,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(form: NgForm) {
-    this.authService.signupUser(new User(form.value.username, form.value.password, form.value.email))
+    this.authentService.signupUser(new User(form.value.username, form.value.password, form.value.email))
       .subscribe(
         (data: ServerResponse) => {
           if ( +data.code === 0 ) {
-            this.authService.setAuthenticated(form.value.username);
+            this.authentService.setAuthenticated(form.value.username);
             this.router.navigate(['../users/' + form.value.username + '/boards'], {relativeTo: this.route});
           }
           if ( +data.code === -1 ) {

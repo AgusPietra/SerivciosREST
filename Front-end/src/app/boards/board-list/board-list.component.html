@@ -6,6 +6,8 @@
 <hr>
 <div class="row">
   <div class="col-xs-12">
+    <span color="red" *ngIf="!serverAlive">{{'Can\'t connect' | translate}}</span>
+    <hr>
     <app-board-item
       *ngFor="let boardEl of boards; let i = index"
       [board]="boardEl"

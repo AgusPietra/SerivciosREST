@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   private notRegisteredUserName: Boolean;
   private invalidPassword: Boolean;
 
-  constructor(private authService: AuthentService,
+  constructor(private authentService: AuthentService,
               private router: Router,
               private route: ActivatedRoute) {
     this.notRegisteredUserName = false;
@@ -29,12 +29,12 @@ export class SigninComponent implements OnInit {
   }
 
   onSignin(form: NgForm) {
-    this.authService.signinUser(new User(form.value.username, form.value.password, form.value.email))
+    this.authentService.signinUser(new User(form.value.username, form.value.password, form.value.email))
       .subscribe(
         (data: ServerResponse) => {
           console.log(data.code);
           if ( +data.code === 0 ) {
-            this.authService.setAuthenticated(form.value.username);
+            this.authentService.setAuthenticated(form.value.username);
             this.router.navigate(['../users/' + form.value.username + '/boards'], {relativeTo: this.route});
           }
           if ( +data.code === -1 ){

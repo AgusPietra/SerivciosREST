@@ -43,6 +43,7 @@ export class TranslatorService {
         'User name not available': 'User name not available',
         'Unknown user name': 'Unknown user name',
         'Password error': 'Password error',
+        'Can\'t connect': 'Can\'t establish connection to server, changes will be lost',
       }
     },
     'Spanish' : {
@@ -68,6 +69,7 @@ export class TranslatorService {
         'User name not available': 'Nombre de usuario no disponible',
         'Unknown user name': 'Nombre de usuario desconocido',
         'Password error': 'Contraseña incorrecta',
+        'Can\'t connect': 'No hay conexión con el servidor, cualquier cambio no se guardará',
       }
     }
   };

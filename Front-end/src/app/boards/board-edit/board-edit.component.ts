@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {BoardsService} from '../boards.service';
+import {BoardsRestService} from '../boards-rest.service';
 
 @Component({
   selector: 'app-board-edit',
@@ -16,6 +17,7 @@ export class BoardEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private boardsService: BoardsService,
+              private boardsRestService: BoardsRestService,
               private router: Router) { }
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class BoardEditComponent implements OnInit {
 
     if (this.editMode) {
       const board = this.boardsService.getBoard(this.id);
-      boardName = board.name;
+      boardName = board.boardName;
       if (board['interests']) {
         for (const interest of board.interests) {
           boardInterests.push(
@@ -55,8 +57,10 @@ export class BoardEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.boardsService.updateBoard(this.boardForm.value, this.id);
+      this.boardsRestService.updateBoard(this.boardForm.value);
     } else {
       this.boardsService.addBoard(this.boardForm.value);
+      this.boardsRestService.createBoard(this.boardForm.value);
     }
     this.onCancel();
   }

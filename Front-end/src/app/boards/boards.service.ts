@@ -1,26 +1,11 @@
 import {Board} from './board.model';
 import {Subject} from 'rxjs/Subject';
+import {BoardsRestService} from './boards-rest.service';
 
 export class BoardsService {
-  private boards: Board[] = [
-    new Board (
-      'Test board',
-      [
-        '@Pepe',
-        '#Chess',
-        '#Cheese',
-        '@Pipo'
-      ]
-    ),
-    new Board (
-      'Another board',
-      [
-        '@Domi',
-        '@Dante',
-        '#all'
-      ],
-    )
-  ];
+  private boards: Board[];
+
+  constructor () {}
 
   boardsChanged = new Subject<Board[]>();
 
@@ -38,16 +23,19 @@ export class BoardsService {
   }
 
   addBoard(board: Board) {
+    //TODO, update in server
     this.boards.push(board);
     this.boardsChanged.next(this.boards.slice());
   }
 
   updateBoard(board: Board, index: number) {
+    //TODO, update in server
     this.boards[index] = board;
     this.boardsChanged.next(this.boards.slice());
   }
 
   deleteBoard(index: number) {
+    //TODO, update in server
     this.boards.splice(index, 1);
     this.boardsChanged.next(this.boards.slice());
   }
