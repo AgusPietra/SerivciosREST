@@ -1,5 +1,6 @@
 Back-end
 
+Implementar el update de board (la interfaz está definida).
 
 Implementar calculateHashCode en FollowedInterest y en FollowedUser.
 
@@ -18,13 +19,7 @@ Optimizaciones DB req{
 
 	En AddNewFollowedUserOnBoardOfUserController en lugar de usar findByUserName usar un método que solo devuelva el nombre del usuario, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
 
-	En DeleteBoardOfUserController, findByUserNameAndBoardName debería retornar solo el usuario y el board (en caso de encontrarlo), más no las listas.
 
-	En DeleteUserController, boardRepository.findByUserName debería devolver solo los nombres de los boards, y no sus listas asociadas.
-
-	En GetFollowedInterestContentsController, followedInterestRepository.save(followedInterestItem) debe actualizar solo la fecha de pregunta. 
-
-	En GetFollowedUserContentsController, followedUserRepository.save(followedUserItem) debe actualizar solo la fecha de pregunta. 
 }
 
 
@@ -33,14 +28,10 @@ Optimizaciones DB req{
 
 Front-end
 
-Obtener la lista de boards desde el servidor.
-
-Actualizar la lista de boards al servidor.
 
 Obtener la info de los boards seleccionados para mostrar en pantalla el contenido de twitter desde el servidor.
 
 Hacer que el signin y el signup realmente funcionen como tales (siempre te deja pasar).
 
-Agregar botón para eliminar boards.
 
 
