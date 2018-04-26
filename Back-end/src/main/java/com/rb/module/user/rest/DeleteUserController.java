@@ -33,16 +33,12 @@ public class DeleteUserController {
                 //ver: https://www.mkyong.com/mongodb/spring-data-mongodb-update-document/
                 /*List<String> boardInterests = board.getFollowedInterests();
                 List<String> boardUsers = board.getFollowedUsers();
-                for (String followedInterestName : boardInterests) {
-                    FollowedInterest interestItem = followedInterestRepository.findByInterestName(followedInterestName);
+                for (String interestName : boardInterests) {
+                    Interest interestItem = interestRepository.findByInterestName(interestName);
                     interestItem.decrementNumberOfUses(); //Si devolviera 0, podría borrarlo de la lista de intereses únicos
-                    followedInterestRepository.save(interestItem);//Lo actualizo en la tabla de intereses únicos.
+                    interestRepository.save(interestItem);//Lo actualizo en la tabla de intereses únicos.
                 }
-                for (String followedUserName : boardUsers) {
-                    FollowedUser userItem = followedUserRepository.findByUserName(followedUserName);
-                    userItem.decrementNumberOfUses(); //Si devolviera 0, podría borrarlo de la lista de usuarios únicos
-                    followedUserRepository.save(userItem);//Lo actualizo en la tabla de usuarios únicos.
-                }*/
+                */
                 this.boardService.deleteByUserNameAndBoardName(userName, board.getBoardName());
             }
             this.userService.deleteByUserName(userName);

@@ -1,6 +1,6 @@
 package com.rb.module.interest.rest;
 
-import com.rb.module.interest.entity.FollowedInterest;
+import com.rb.module.interest.entity.Interest;
 import com.rb.module.interest.service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +16,12 @@ public class GetFollowedInterestContentsController {
     }
 
     @RequestMapping(value = {"/followedinterests/{followedInterest}"}, method = RequestMethod.GET)
-    public FollowedInterest followedInterest(@PathVariable(value="followedInterest") String followedInterestName) {
+    public Interest followedInterest(@PathVariable(value="followedInterest") String followedInterestName) {
 
-        FollowedInterest followedInterestItem = this.interestService.findByInterestName(followedInterestName);
+        Interest followedInterestItem = this.interestService.findByInterestName(followedInterestName);
         if(followedInterestItem == null) {
             //TODO manejar que pasa si el usuario pide un item que no está
-            return new FollowedInterest("");
+            return new Interest("");
         }
         followedInterestItem.asked();//Actualizo el Date de la última consulta.
         this.interestService.save(followedInterestItem);//TODO, hacer úptimo, solo actualizar el date de consulta

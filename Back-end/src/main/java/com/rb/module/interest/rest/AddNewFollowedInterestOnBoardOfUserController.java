@@ -3,7 +3,7 @@ package com.rb.module.interest.rest;
 import com.rb.module.board.service.BoardService;
 import com.rb.module.interest.service.InterestService;
 import com.rb.module.board.entity.Board;
-import com.rb.module.interest.entity.FollowedInterest;
+import com.rb.module.interest.entity.Interest;
 import com.rb.module.user.entity.User;
 import com.rb.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +24,18 @@ public class AddNewFollowedInterestOnBoardOfUserController {
     }
 
 
-    @RequestMapping(value = {"/users/{userName}/boards/{boardName}/followedinterests/{followedInterestName}"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/users/{userName}/boards/{boardName}/interests/{interestName}"}, method = RequestMethod.PUT)
     public Board board(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName,
-                       @PathVariable(value="followedInterestName") String followedInterestName) {
+                       @PathVariable(value="interestName") String interestName) {
         User userExists = this.userService.findByUserName(userName);
         if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
 
         }
         else {
             //Primero Chequeo si es un interés nuevo para la tabla de intereses únicos.
-            FollowedInterest interest = this.interestService.findByInterestName(followedInterestName);
+            Interest interest = this.interestService.findByInterestName(interestName);
             if (interest == null) {
-                interest = new FollowedInterest(followedInterestName);
+                interest = new Interest(interestName);
                 interest.asked();
                 this.interestService.save(interest);//Lo salvo en la tabla de intereses únicos.
             }
@@ -50,7 +50,7 @@ public class AddNewFollowedInterestOnBoardOfUserController {
             if (board == null) {//Si el board no existe, lo creo con el nuevo interés metido
                 board = new Board(userName, boardName);
             }
-            board.setFollowedInterest(followedInterestName);
+            board.setInterest(interestName);
             this.boardService.save(board);
 
             return board;

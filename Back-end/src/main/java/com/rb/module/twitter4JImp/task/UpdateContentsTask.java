@@ -3,7 +3,7 @@ package com.rb.module.twitter4JImp.task;
 import java.util.Date;
 import java.util.List;
 
-import com.rb.module.interest.entity.FollowedInterest;
+import com.rb.module.interest.entity.Interest;
 import com.rb.module.interest.service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -38,15 +38,15 @@ public class UpdateContentsTask {
 
     @Scheduled(fixedRate = 1000000)//Tiempo en el que actualizo el contenido de twitter
     public void UpdateContentsTime() {
-        List<FollowedInterest> interests = interestService.findAllInterests();
+        List<Interest> interests = interestService.findAllInterests();
 
         //TODO, añadir chequeos de la última vez que un usuario preguntó, y la última vez que se actualizó, mas lo del hash para ver si refrescar o no en base.
         try {
             System.out.println("quering tweets");
 
             //TODO, a todos los usuarios e intereses los trata de la misma forma, eso no es así, hay que diferenciar si comienza con @ o #
-            for(FollowedInterest interest: interests) {
-                String querySt = interest.getFollowedInterestName();
+            for(Interest interest: interests) {
+                String querySt = interest.getInterestName();
                 if(querySt.startsWith("@")){
                     querySt = querySt.substring(1) + "+exclude:retweets+exclude:replies+exclude:mentions";
                     Query query = new Query(querySt);
