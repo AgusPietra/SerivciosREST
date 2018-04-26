@@ -23,7 +23,7 @@ export class TranslatorService {
     'English' : {
       languange: 'English',
       values: {
-        'Welcome' : 'Welcome to the Social Media Aggregator',
+        'Welcome' : 'Welcome to the Social Media Aggregator Challenge',
         'Email': 'E-mail',
         'User name' : 'User name',
         'Password' : 'Password',
@@ -48,7 +48,7 @@ export class TranslatorService {
     'Spanish' : {
       languange: 'Spanish',
       values: {
-        'Welcome' : 'Bienvenido al visualizador de contenidos',
+        'Welcome' : 'Bienvenido al desafío de visualizador de contenidos',
         'Email': 'Correo electrónico',
         'User name' : 'Nombre de usuario',
         'Password' : 'Contraseña',
