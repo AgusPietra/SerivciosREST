@@ -4,7 +4,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
-  { path: 'boards', loadChildren: './boards/boards.module#BoardsModule'}
+  { path: 'users/:user/boards', loadChildren: './boards/boards.module#BoardsModule'}
 ];
 
 @NgModule({

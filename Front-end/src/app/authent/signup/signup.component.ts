@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AuthentService } from '../authent.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ServerResponse} from '../../shared/server-response.model';
-import {User} from '../user.model';
+import {User} from '../../users/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
         (data: ServerResponse) => {
           if ( +data.code === 0 ) {
             this.authService.setAuthenticated(form.value.username);
-            this.router.navigate(['../boards'], {relativeTo: this.route});
+            this.router.navigate(['../users/' + form.value.username + '/boards'], {relativeTo: this.route});
           }
           if ( +data.code === -1 ) {
             this.userAlreadyTaken = true;
