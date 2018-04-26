@@ -4,18 +4,23 @@ import {BoardsRestService} from './boards-rest.service';
 
 export class BoardsService {
   private boards: Board[];
-
-  constructor () {}
+  constructor () {
+    this.boards = new Array<Board>();
+  }
 
   boardsChanged = new Subject<Board[]>();
 
   setBoards(boards: Board[]) {
-    this.boards = boards;
-    this.boardsChanged.next(this.boards.slice());
+    if(boards) {
+      this.boards = boards;
+      this.boardsChanged.next(this.boards.slice());
+    }
   }
 
   getBoards() {
-    return this.boards.slice();
+    if(this.boards) {
+      return this.boards.slice();
+    }
   }
 
   getBoard(index: number) {
@@ -23,7 +28,7 @@ export class BoardsService {
   }
 
   addBoard(board: Board) {
-    //TODO, update in server
+    console.log('new board on list: ' + board.boardName);
     this.boards.push(board);
     this.boardsChanged.next(this.boards.slice());
   }

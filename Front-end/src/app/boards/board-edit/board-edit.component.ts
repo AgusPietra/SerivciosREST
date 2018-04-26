@@ -48,7 +48,7 @@ export class BoardEditComponent implements OnInit {
     }
 
     this.boardForm = new FormGroup({
-      'name': new FormControl(boardName, Validators.required),
+      'boardName': new FormControl(boardName, Validators.required),
       'interests': boardInterests
     });
     console.log(this.boardForm);

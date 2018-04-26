@@ -22,17 +22,26 @@ public class SetNewBoardOfUserController {
 
 
     @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.POST)
-    public Board board(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName) {
+    public Board setNewboard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName
+            , @RequestBody Board board) {
+
+        System.out.println("Saving new board");
+        System.out.println("user name: " + userName);
+        System.out.println("board name: " + boardName);
+        System.out.println("Saving new board named: " + board.getUserName() + " from user: " + board.getBoardName());
 
         User userExists = this.userService.findByUserName(userName);
         if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
+
         }
         else {
-            Board board = this.boardService.findByUserNameAndBoardName(userName, boardName);
+            Board exsistingBoard = this.boardService.findByUserNameAndBoardName(userName, boardName);
 
-            if (board == null)
-                board = new Board(userName, boardName);
-            this.boardService.save(new Board(userName, boardName));
+            if (exsistingBoard != null)
+                this.boardService.deleteByUserNameAndBoardName(userName, boardName);
+            this.boardService.save(board);
+            System.out.println("Saved new board named: " + board.getUserName() + " from user: " + board.getBoardName());
+
             return board;
         }
         return new Board ("","");
