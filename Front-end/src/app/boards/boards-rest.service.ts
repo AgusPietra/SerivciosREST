@@ -69,9 +69,9 @@ export class BoardsRestService implements OnInit{
   public createBoard(board: Board) {
 
     board.userName = this.authentService.authenticatedUserName;
-    console.log('creating board on server');//TODO
-    console.log('user name: ' + board.userName);//TODO
-    console.log('board name: ' + board.boardName);//TODO
+    console.log('creating board on server');
+    console.log('user name: ' + board.userName);
+    console.log('board name: ' + board.boardName);
 
     this.httpClient.post<ServerResponse>('http://localhost:8080/users/' + board.userName + '/boards/' + board.boardName, board, {
       observe: 'body',
@@ -95,8 +95,32 @@ export class BoardsRestService implements OnInit{
   }
 
   public updateBoard(board: Board) {
-    this.serverAlive.next(false);
-    console.log('updating board to server');//TODO
+
+    board.userName = this.authentService.authenticatedUserName;
+    console.log('updating board to server');
+    console.log('user name: ' + board.userName);
+    console.log('board name: ' + board.boardName);
+
+    this.httpClient.put<ServerResponse>('http://localhost:8080/users/' + board.userName + '/boards/' + board.boardName, board, {
+      observe: 'body',
+      params: new HttpParams()
+    }).subscribe(
+      (data: ServerResponse) => {
+        if ( +data.code === 0 ) {
+          this.serverAlive.next(true);
+          console.log('board saved ok');
+        }
+        if ( +data.code === -1 ) {
+          console.log('board not saved ok');
+          this.serverAlive.next(false);//TODO, diferenciar caso, hay comunicación pero también un error interno
+        }
+      },
+      (error) => {
+        console.log('board saved not performed due to cant connect');
+        this.serverAlive.next(false);
+      }
+    );
+
   }
   public deleteBoard(board: Board) {
     this.serverAlive.next(false);

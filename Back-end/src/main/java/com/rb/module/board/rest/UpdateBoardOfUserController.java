@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-public class SetNewBoardOfUserController {
+public class UpdateBoardOfUserController {
 
 
     private BoardService boardService;
     private UserService userService;
     @Autowired
-    public SetNewBoardOfUserController(UserService userService, BoardService boardService) {
+    public UpdateBoardOfUserController(UserService userService, BoardService boardService) {
         this.userService = userService;
         this.boardService = boardService;
     }
 
 
-    @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.PUT)
     public Board setNewboard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName
             , @RequestBody Board board) {
 
@@ -37,9 +37,11 @@ public class SetNewBoardOfUserController {
         else {
             Board exsistingBoard = this.boardService.findByUserNameAndBoardName(userName, boardName);
 
-            if (exsistingBoard != null)
-                this.boardService.deleteByUserNameAndBoardName(userName, boardName);
+//            if (exsistingBoard == null)
             this.boardService.save(board);
+//            else
+//                this.boardService.updateBoard(board);
+
             System.out.println("Saved new board named: " + board.getBoardName() + " from user: " + board.getUserName());
 
             return board;

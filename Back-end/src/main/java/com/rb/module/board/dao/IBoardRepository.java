@@ -9,5 +9,6 @@ public interface IBoardRepository extends MongoRepository<Board, String> {
 
     Board findByUserNameAndBoardName(String userName, String boardName);
     List<Board> findByUserName(String userName);
+//    void updateBoard(Board board);
     void deleteByUserNameAndBoardName(String userName, String boardName);
 }

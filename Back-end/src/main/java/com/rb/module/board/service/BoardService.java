@@ -31,6 +31,10 @@ public class BoardService {
         this.boardRepository.deleteByUserNameAndBoardName(userName, boardName);
     }
 
+//    public void updateBoard(Board board){
+//        this.boardRepository.updateBoard(board);
+//    }
+
     public void save (Board board) {
         this.boardRepository.save(board);
     }
