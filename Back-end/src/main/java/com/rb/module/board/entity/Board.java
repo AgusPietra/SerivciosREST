@@ -12,7 +12,6 @@ public class Board {
     public String userName;
     public String boardName;
     public List<String> followedInterests;
-    public List<String> followedUsers;
 
     public Board() {}
 
@@ -21,7 +20,6 @@ public class Board {
         this.boardName = boardName;
 
         this.followedInterests = new ArrayList<>();
-        this.followedUsers = new ArrayList<>();
 
     }
 
@@ -44,22 +42,10 @@ public class Board {
         if(followedInterests == null) return new ArrayList<>();//Porque al principio esta lista no se inicializaba si no habia intereses
         return followedInterests;
     }
-    public List<String> getFollowedUsers() {
-        if(followedUsers == null) return new ArrayList<>();//Porque al principio esta lista no se inicializaba si no habia usuarios
-        return followedUsers;
-    }
     public boolean setFollowedInterest(String followedInterest) {
         if(followedInterests.contains(followedInterest))
             return false;
         followedInterests.add(followedInterest);
         return true;
     }
-    public boolean setFollowedUser(String followedUser) {
-        if(followedUsers.contains(followedUser))
-            return false;
-        followedUsers.add(followedUser);
-        return true;
-    }
-
-
 }
