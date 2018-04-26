@@ -28,6 +28,7 @@ Optimizaciones DB req{
 
 Front-end
 
+Que la edicion del nombre de un board se refleje en el backend.
 
 Obtener la info de los boards seleccionados para mostrar en pantalla el contenido de twitter desde el servidor.
 

@@ -48,4 +48,14 @@ public class Board {
         this.interests.add(interest);
         return true;
     }
+
+    public boolean deleteInterests() {
+        this.interests.clear();
+        return true;
+    }
+
+    public boolean setInterests(List<String> interests) {
+        this.interests = new ArrayList<String>(interests);
+        return true;
+    }
 }
