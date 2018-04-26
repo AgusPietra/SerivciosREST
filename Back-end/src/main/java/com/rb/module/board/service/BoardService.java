@@ -1,6 +1,7 @@
 package com.rb.module.board.service;
 
 import com.rb.module.board.dao.IBoardRepository;
+import com.rb.module.board.dao.IBoardRepositoryOwnQueries;
 import com.rb.module.board.entity.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
@@ -13,6 +14,9 @@ import java.util.List;
 public class BoardService {
     @Autowired
     private IBoardRepository boardRepository;
+
+    @Autowired
+    private IBoardRepositoryOwnQueries boardRepositoryOwnQueries;
 
     @Autowired
     public BoardService(IBoardRepository boardRepository) {
@@ -31,9 +35,9 @@ public class BoardService {
         this.boardRepository.deleteByUserNameAndBoardName(userName, boardName);
     }
 
-//    public void updateBoard(Board board){
-//        this.boardRepository.updateBoard(board);
-//    }
+    public void updateBoardOfUser(Board board){
+        this.boardRepositoryOwnQueries.updateBoardOfUser(board);
+    }
 
     public void save (Board board) {
         this.boardRepository.save(board);

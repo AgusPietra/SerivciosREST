@@ -2,6 +2,7 @@ package com.rb.module.board.rest;
 
 import com.rb.module.board.entity.Board;
 import com.rb.module.board.service.BoardService;
+import com.rb.module.common.response.codes.Code;
 import com.rb.module.user.entity.User;
 import com.rb.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,14 @@ public class DeleteBoardOfUserController {
     }
 
     @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.DELETE)
-    public Board deleteBoard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName) {
+    public Code deleteBoard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName) {
         User userExists = this.userService.findByUserName(userName);
         if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
         }
         else {
             Board board = this.boardService.findByUserNameAndBoardName(userName, boardName);
 
-            if (board == null)
-                board = new Board(userName, boardName);
-            else {
+            if (board != null) {
                 //TODO esto deberia hacerse con querys mas optimos, y hacer updates en vez de saves,
                 //ver: https://www.mkyong.com/mongodb/spring-data-mongodb-update-document/
 /*                List<String> boardInterests = board.getFollowedInterests();
@@ -42,9 +41,8 @@ public class DeleteBoardOfUserController {
                 */
                 this.boardService.deleteByUserNameAndBoardName(userName, boardName);
             }
-            return board;
         }
-        return new Board ("","");
+        return new Code(0);
     }
 }
 

@@ -2,6 +2,7 @@ package com.rb.module.board.rest;
 
 import com.rb.module.board.entity.Board;
 import com.rb.module.board.service.BoardService;
+import com.rb.module.common.response.codes.Code;
 import com.rb.module.user.entity.User;
 import com.rb.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class SetNewBoardOfUserController {
 
 
     @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.POST)
-    public Board setNewboard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName
+    public Code setNewboard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName
             , @RequestBody Board board) {
 
         System.out.println("Saving new board");
@@ -42,9 +43,8 @@ public class SetNewBoardOfUserController {
             this.boardService.save(board);
             System.out.println("Saved new board named: " + board.getBoardName() + " from user: " + board.getUserName());
 
-            return board;
         }
-        return new Board ("","");
+        return new Code(0);
     }
 }
 

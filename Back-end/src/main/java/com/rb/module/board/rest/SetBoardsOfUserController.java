@@ -2,6 +2,7 @@ package com.rb.module.board.rest;
 
 import com.rb.module.board.entity.Board;
 import com.rb.module.board.service.BoardService;
+import com.rb.module.common.response.codes.Code;
 import com.rb.module.user.entity.User;
 import com.rb.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class SetBoardsOfUserController {
 
 
     @RequestMapping(value = {"/users/{userName}/boards"}, method = RequestMethod.POST)
-    public void setBoards(@PathVariable(value="userName") String userName, @RequestBody Board[] boards) {
+    public Code setBoards(@PathVariable(value="userName") String userName, @RequestBody Board[] boards) {
 
         User userExists = this.userService.findByUserName(userName);
         if(userExists == null) {//TODO manegar situación de que el usuario no exista, aunque no debiera poder pasar
@@ -33,6 +34,7 @@ public class SetBoardsOfUserController {
                 //TODO, implementar si se comienza a utilizar desde el front.
             }
         }
+        return new Code(0);
     }
 }
 
