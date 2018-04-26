@@ -33,15 +33,18 @@ export class BoardsService {
   }
 
   updateBoard(board: Board, index: number) {
-    //TODO, update in server
     this.boards[index] = board;
     this.boardsChanged.next(this.boards.slice());
   }
 
   deleteBoard(index: number) {
-    //TODO, update in server
     this.boards.splice(index, 1);
     this.boardsChanged.next(this.boards.slice());
+  }
+
+  deleteBoards() {
+    this.boards.splice(0,this.boards.length);
+
   }
 
 }

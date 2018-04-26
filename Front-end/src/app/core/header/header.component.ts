@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import { AuthentService } from '../../authent/authent.service';
 import {TranslatorService} from '../../shared/translator.service';
+import {BoardsService} from '../../boards/boards.service';
 
 
 @Component({
@@ -10,7 +11,8 @@ import {TranslatorService} from '../../shared/translator.service';
 })
 export class HeaderComponent implements OnInit {
   constructor(private authentService: AuthentService,
-              private translatorService: TranslatorService) {
+              private translatorService: TranslatorService,
+              private boardsService: BoardsService) {
   }
 
   languages: string[];
@@ -21,6 +23,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit (){
     this.languages = this.translatorService.getLanguages();
+    this.boardsService.deleteBoards();
     console.log(this.languages);
   }
 
