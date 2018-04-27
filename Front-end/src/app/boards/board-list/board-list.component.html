@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <button class="btn btn-success" (click)="onNewBoard()">{{'New board' | translate}}</button>
+    <button [disabled] = "!serverAlive" class="btn btn-success" (click)="onNewBoard()">{{'New board' | translate}}</button>
   </div>
 </div>
 <hr>

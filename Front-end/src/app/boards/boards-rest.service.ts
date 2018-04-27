@@ -40,6 +40,9 @@ export class BoardsRestService implements OnInit{
       .subscribe(
         (boards: Board[]) => {
           this.boardsService.setBoards(boards);
+        },
+        (error) => {
+          this.serverAlive.next(false);
         }
       );
   }

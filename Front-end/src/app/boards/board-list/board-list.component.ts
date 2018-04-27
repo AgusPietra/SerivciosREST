@@ -40,8 +40,8 @@ export class BoardListComponent implements OnInit {
         serverAlive ? console.log('Server alive') : console.log('Server dead');
         this.serverAlive = serverAlive;
     });
-    // this.boardsService.setBoards(this.boardsRestService.getBoards(this.authentService.authenticatedUserName));
-    this.boardsRestService.getBoards();
+
+    this.boardsRestService.getBoards(); //Orden para pedir los boards al server; una vez obtenidos, será boardsService quien los maneje
     this.boards = this.boardsService.getBoards();
     if (this.boards.length !== 0) {
       this.existingBoards = true;

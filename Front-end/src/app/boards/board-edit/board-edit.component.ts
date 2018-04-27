@@ -50,9 +50,9 @@ export class BoardEditComponent implements OnInit {
     }
 
     this.boardForm = new FormGroup({
-      'boardName': new FormControl(boardName, Validators.required),
+      'boardName': new FormControl(boardName, [Validators.required, this.usedBoardNames.bind(this)]),
       'interests': boardInterests
-    });
+    },);
     console.log(this.boardForm);
   }
 
@@ -79,6 +79,13 @@ export class BoardEditComponent implements OnInit {
 
   onDeleteInterest(index: number) {
     (<FormArray>this.boardForm.get('interests')).removeAt(index);
+  }
+
+  usedBoardNames(control: FormControl): {[s: string]: boolean}{
+    if (this.boardsService.checkIfBoardNamesUsed(control.value)) {
+      return {'boardNameUsed': true};
+    }
+    return null;
   }
 }
 
