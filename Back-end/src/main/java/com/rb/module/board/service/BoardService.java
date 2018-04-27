@@ -35,8 +35,8 @@ public class BoardService {
         this.boardRepository.deleteByUserNameAndBoardName(userName, boardName);
     }
 
-    public void updateBoardOfUser(Board board){
-        this.boardRepositoryOwnQueries.updateBoardOfUser(board);
+    public void updateBoardOfUser(Board board, String boardOriginalName){
+        this.boardRepositoryOwnQueries.updateBoardOfUser(board, boardOriginalName);
     }
 
     public void save (Board board) {

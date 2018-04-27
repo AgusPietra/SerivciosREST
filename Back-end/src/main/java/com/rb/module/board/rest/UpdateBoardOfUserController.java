@@ -41,7 +41,7 @@ public class UpdateBoardOfUserController {
                 this.boardService.save(board);
             }
             else {
-                this.boardService.updateBoardOfUser(board);
+                this.boardService.updateBoardOfUser(board, boardName);//boardName tiene el nombre original, board.boardName puede tener un nombre nevo
             }
 
             System.out.println("Updated board named: " + board.getBoardName() + " from user: " + board.getUserName());

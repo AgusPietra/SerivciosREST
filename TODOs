@@ -1,6 +1,5 @@
 Back-end
 
-Implementar el update de board (la interfaz está definida).
 
 Implementar calculateHashCode en FollowedInterest y en FollowedUser.
 
@@ -14,21 +13,13 @@ Implementar interfaces para los componentes que aún no tengan.
 
 @CrossOrigin debe ser condicional a desarrollo y no vincularse para producción en los controladores.
 
-Optimizaciones DB req{
-	En AddNewFollowedInterestOnBoardOfUserController en lugar de usar findByInterestName usar un método que solo devuelva el nombre del interés, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
-
-	En AddNewFollowedUserOnBoardOfUserController en lugar de usar findByUserName usar un método que solo devuelva el nombre del usuario, más no su contenido en base ni los datetimes. Cuando se guarda, usar updates, no saves.
-
-
-}
-
 
 
 
 
 Front-end
 
-Que la edicion del nombre de un board se refleje en el backend.
+Protección para nombres repetidos de boards.
 
 Obtener la info de los boards seleccionados para mostrar en pantalla el contenido de twitter desde el servidor.
 

@@ -20,19 +20,29 @@ public class BoardRepositoryOwnQueries implements  IBoardRepositoryOwnQueries{
 
     @Autowired MongoOperations mongoOperations;
 
-    public void updateBoardOfUser(Board board){
-        System.out.println("UPDATING BOARD: " + board.getBoardName() + " from user: " + board.getUserName());
+    public void updateBoardOfUser(Board board, String boardOriginalName){
+        System.out.println("UPDATING BOARD: " + boardOriginalName + " from user: " + board.getUserName());
+        System.out.println("Board new name: " + board.getBoardName());
         Query query = new Query();
         Criteria criteria = new Criteria().andOperator(
-                Criteria.where("boardName").is(board.getBoardName()),
+                Criteria.where("boardName").is(boardOriginalName),
                 Criteria.where("userName").is(board.getUserName()));
         query.addCriteria(criteria);
         List<Board> boardsF = mongoTemplate.find(query, Board.class);
 
+        if (boardOriginalName.compareTo(board.getBoardName()) != 0) {
+            mongoOperations.save(board);
+        }
+
         for (Board boardF: boardsF){
             System.out.println("Board name found: " + boardF.getBoardName());
-            boardF.setInterests(board.interests);
-            mongoOperations.save(boardF);
+            if (boardOriginalName.compareTo(board.getBoardName()) != 0){
+                mongoTemplate.remove(boardF);
+            }
+            else {
+                boardF.setInterests(board.interests);
+                mongoOperations.save(boardF);
+            }
             for (String interest: boardF.interests){
                 System.out.println("Interest of board: " + interest);
             }

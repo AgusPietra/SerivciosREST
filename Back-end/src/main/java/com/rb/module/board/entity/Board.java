@@ -31,11 +31,15 @@ public class Board {
     }
 */
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public String getBoardName() {
-        return boardName;
+        return this.boardName;
+    }
+
+    public void setBoardName(String boardName) {
+        this.boardName = boardName;
     }
 
     public List<String> getFollowedInterests() {

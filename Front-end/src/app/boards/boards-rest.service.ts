@@ -94,14 +94,14 @@ export class BoardsRestService implements OnInit{
     );
   }
 
-  public updateBoard(board: Board) {
+  public updateBoard(board: Board, actualBoardName: String) {
 
     board.userName = this.authentService.authenticatedUserName;
     console.log('updating board to server');
     console.log('user name: ' + board.userName);
     console.log('board name: ' + board.boardName);
 
-    this.httpClient.put<ServerResponse>('http://localhost:8080/users/' + board.userName + '/boards/' + board.boardName, board, {
+    this.httpClient.put<ServerResponse>('http://localhost:8080/users/' + board.userName + '/boards/' + actualBoardName, board, {
       observe: 'body',
       params: new HttpParams()
     }).subscribe(

@@ -14,6 +14,7 @@ export class BoardEditComponent implements OnInit {
   id: number;
   editMode = false;
   boardForm: FormGroup;
+  actualBoardName: String; //Para ediciones de nombre.
 
   constructor(private route: ActivatedRoute,
               private boardsService: BoardsService,
@@ -37,6 +38,7 @@ export class BoardEditComponent implements OnInit {
 
     if (this.editMode) {
       const board = this.boardsService.getBoard(this.id);
+      this.actualBoardName = board.boardName;
       boardName = board.boardName;
       if (board['interests']) {
         for (const interest of board.interests) {
@@ -57,7 +59,7 @@ export class BoardEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.boardsService.updateBoard(this.boardForm.value, this.id);
-      this.boardsRestService.updateBoard(this.boardForm.value);
+      this.boardsRestService.updateBoard(this.boardForm.value, this.actualBoardName);
     } else {
       this.boardsService.addBoard(this.boardForm.value);
       this.boardsRestService.createBoard(this.boardForm.value);
