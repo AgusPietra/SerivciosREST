@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
+
 @Component
 public class DeleteOldInterestsAndUsersFollowedTask {
 
@@ -15,12 +17,15 @@ public class DeleteOldInterestsAndUsersFollowedTask {
         this.interestService = interestService;
     }
 
-    @Scheduled(fixedRate = 100000) //Tiempo en el que si ningún usuario preguntó por este contenido, lo borro de las tablas.
+    @Scheduled(fixedRate = 86300000) //Con frecuencia levemente mayor a una vez por día, si ningún usuario preguntó
+    // por un determinado contenido durante una semana, se borra de las tabla de intereses.
     public void DeleteOldInterestsAndUsersFollowed() {
         long numberOfInterests = interestService.count();
-//        long numberErased = interestService.countInterestsByLastTimeAskedAfter(new Date());
+        Calendar limitDate = Calendar.getInstance();
+        limitDate.add(Calendar.DAY_OF_WEEK, -7);
+        long numberErased = interestService.deleteInterestsByLastTimeAskedBefore(limitDate);
 
         System.out.println("numberOfInterests: " + numberOfInterests);
-//        System.out.println("numberErased: " + numberErased);
+        System.out.println("numberErased: " + numberErased);
     }
 }

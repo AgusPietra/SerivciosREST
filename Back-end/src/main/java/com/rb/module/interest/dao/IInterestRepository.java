@@ -1,6 +1,7 @@
 package com.rb.module.interest.dao;
 
 //import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import com.rb.module.interest.entity.Interest;
@@ -10,6 +11,6 @@ public interface IInterestRepository extends MongoRepository<Interest, String> {
 
     Interest findByInterestName(String interestName);
     List<Interest> findAll();
-//    long countInterestsByLastTimeAskedAfter( Date asked );
+    long deleteInterestsByLastTimeAskedBefore (Calendar cal);
     long count();
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Component
@@ -48,9 +49,9 @@ public class InterestService {
         }
     }
 
-//    public long countInterestsByLastTimeAskedAfter(Date asked){
-//        return interestRepository.countInterestsByLastTimeAskedAfter(asked);
-//    }
+    public long deleteInterestsByLastTimeAskedBefore(Calendar calendar){
+        return interestRepository.deleteInterestsByLastTimeAskedBefore(calendar);
+    }
 //
     public long count(){
         return interestRepository.count();
