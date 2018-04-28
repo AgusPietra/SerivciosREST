@@ -25,7 +25,10 @@ public class GetFollowedInterestContentsController {
         System.out.println("accessing content of: " + interestName);
         Interest interestItem = this.interestService.findByInterestName(interestName);
         if(interestItem == null) {
-            //TODO manejar que pasa si el usuario pide un item que no está
+            interestItem = new Interest(interestName);//El interés fue borrado de la tabla, porque hace mucho que no
+                                                      // se consultaba
+            this.interestService.save(interestItem);//Entonces lo agrego
+            System.out.println("Added iinterest: "+interestName);
             return new ArrayList<>();
         }
         interestItem.asked();//Actualizo el Date de la última consulta.
