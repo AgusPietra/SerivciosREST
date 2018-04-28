@@ -31,8 +31,8 @@ public class GetFollowedInterestContentsController {
             System.out.println("Added iinterest: "+interestName);
             return new ArrayList<>();
         }
-        interestItem.asked();//Actualizo el Date de la última consulta.
-        this.interestService.save(interestItem);//TODO, hacer úptimo, solo actualizar el date de consulta
+        interestItem.setAsked();//Aviso que se preguntó
+        this.interestService.save(interestItem);//TODO, hacer úptimo, solo actualizar la indicación de que se consultó
         return interestItem.getContents();
     }
 }

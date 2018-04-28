@@ -12,5 +12,7 @@ public interface IInterestRepository extends MongoRepository<Interest, String> {
     Interest findByInterestName(String interestName);
     List<Interest> findAll();
     long deleteInterestsByLastTimeAskedBefore (Calendar cal);
+    List<Interest> findAllInterestsNameByAskedAndLastTimeUpdatedBefore(boolean asked,
+                                                                       Calendar updatedBefore);
     long count();
 }

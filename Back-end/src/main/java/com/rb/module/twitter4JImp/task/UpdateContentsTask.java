@@ -2,6 +2,7 @@ package com.rb.module.twitter4JImp.task;
 
 import java.util.ArrayList;
 //import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import com.rb.module.interest.entity.Interest;
@@ -27,26 +28,26 @@ public class UpdateContentsTask {
         this.interestService = interestService;
     }
 
-    // The factory instance is re-useable and thread safe.
     Twitter twitter = TwitterFactory.getSingleton();
     int numberOfUserTweets = 5;
     int numberOfInterestsTweets = 5;
-    int maxDaysBackOfUserTweets = 2;
-    int maxDaysBackOfInterestsTweets = 2;
+//    int maxDaysBackOfUserTweets = 2;
+//    int maxDaysBackOfInterestsTweets = 2;
 
     //TODO la API de twitter permite devolver tweets dentro de un radio de geolocalización del usuario que consulta.
     //Eventualmente se podría incorporar...
 
-    @Scheduled(fixedRate = 1000000)//Tiempo en el que actualizo el contenido de twitter
+    @Scheduled(fixedRate = 10000)//Tiempo en el que se chequea si se debe actualizar el contenido
     public void UpdateContentsTime() {
-        List<Interest> interests = interestService.findAllInterests();
+//        List<Interest> interests = interestService.findAllInterests();
 
-        //TODO, añadir chequeos de la última vez que un usuario preguntó, y la última vez que se actualizó, mas lo del hash para ver si refrescar o no en base.
+    Calendar updatedBefore = Calendar.getInstance();
+    updatedBefore.add(Calendar.MINUTE, -1); //Si un usuario ha preguntado por dicho contenido, y el mismo fue
+        // actualizado hace al menos un minuto, se ejecuta el query de actualización.
+    List<Interest> interests = interestService.findAllInterestsNameByAskedAndLastTimeUpdatedBefore(
+            true, updatedBefore);
         try {
-            System.out.println("quering tweets");
-
             List<String> contents = new ArrayList<>();
-            //TODO, a todos los usuarios e intereses los trata de la misma forma, eso no es así, hay que diferenciar si comienza con @ o #
             for(Interest interest: interests) {
                 String querySt = interest.getInterestName();
                 if(querySt.startsWith("@")){
@@ -60,8 +61,8 @@ public class UpdateContentsTask {
                     contents.clear();
                     for (Status status : result.getTweets()) {
                         System.out.println("Twit num: " + ++tweetN);
-                        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-                        contents.add(status.getText());
+                        System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText());
+                        contents.add("@" + status.getUser().getScreenName() + ": " + status.getText());
                     }
                     interest.setContents(contents);
                     interest.setUpdated();
@@ -79,8 +80,8 @@ public class UpdateContentsTask {
                     contents.clear();
                     for (Status status : result.getTweets()) {
                         System.out.println("Twit num: " + ++tweetN);
-                        System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-                        contents.add(status.getText());
+                        System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText());
+                        contents.add("@" + status.getUser().getScreenName() + ": " + status.getText());
                     }
                     interest.setContents(contents);
                     interest.setUpdated();
@@ -92,7 +93,7 @@ public class UpdateContentsTask {
         catch (TwitterException e){
             System.out.println("Twitter exception: " + e);
         }
-        System.out.println("quered twitter");
+//        System.out.println("quered twitter");
 //        System.out.println(new Date());
 /*
         try {

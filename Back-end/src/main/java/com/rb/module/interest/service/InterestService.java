@@ -56,4 +56,11 @@ public class InterestService {
     public long count(){
         return interestRepository.count();
     }
+
+    public List<Interest> findAllInterestsNameByAskedAndLastTimeUpdatedBefore (
+            boolean asked,
+            Calendar updatedBefore){
+        return interestRepository.findAllInterestsNameByAskedAndLastTimeUpdatedBefore(
+                asked, updatedBefore);
+    }
 }

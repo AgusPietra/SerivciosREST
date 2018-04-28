@@ -1,9 +1,7 @@
 Back-end
 
 
-Implementar calculateHashCode en FollowedInterest y en FollowedUser.
-
-Implementar DeleteOldInterestsAndUsersFollowedTask para intereses o usuarios por los que hace x tiempo que no se consulta.
+Implementar calculateHashCode en Interest.
 
 Implementar una cola de mensajes para tener una arquitectura non-blocking.
 
@@ -19,6 +17,7 @@ Implementar interfaces para los componentes que aún no tengan.
 
 Front-end
 
+Que los contenidos de un board se refresquen automáticamente.
 
 Hacer que el signin y el signup realmente funcionen como tales (siempre te deja pasar).
 
