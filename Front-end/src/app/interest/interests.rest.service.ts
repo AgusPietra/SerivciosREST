@@ -10,17 +10,16 @@ export class InterestsRestService {
 
     public updateContents() {
 
-      for(let interestName of this.interestService.getInterestsNamesList()) {
+      for(const interestName of this.interestService.getInterestsNamesList()) {
         console.log('getting content from interests: ' + interestName + ' from server');
 
-        interestName = interestName.replace('#', '%23' );
+        const interestNameEscaped = interestName.replace('#', '%23' );
 
-        this.httpClient.get<string[]>('http://localhost:8080/interests/' + interestName, {
+        this.httpClient.get<string[]>('http://localhost:8080/interests/' + interestNameEscaped, {
           observe: 'body',
           responseType: 'json'
         }).map(
           (interestContents) => {
-            console.log(interestContents);
             return interestContents;
           }
         )
