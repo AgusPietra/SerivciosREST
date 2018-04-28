@@ -3,7 +3,7 @@ package com.rb.module.interest.entity;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class Interest implements IContents {
@@ -12,8 +12,8 @@ public class Interest implements IContents {
 
     private String interestName;
     private List<String> contents;
-    private Date lastTimeUpdated;
-    private Date lastTimeAsked;
+    private Calendar lastTimeUpdated;
+    private Calendar lastTimeAsked;
     private int hashCode;
 
     public Interest() {}
@@ -21,9 +21,9 @@ public class Interest implements IContents {
     public Interest(String interestName) {
         this.interestName = interestName;
         this.contents = new ArrayList<>();
-        lastTimeUpdated = new Date();
-        lastTimeUpdated.setTime(0);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
-        lastTimeAsked = new Date();
+        lastTimeUpdated = Calendar.getInstance();
+        lastTimeUpdated.add(Calendar.MONTH,-12);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
+        lastTimeAsked = Calendar.getInstance();
     }
 
     public String getInterestName() {
@@ -31,10 +31,10 @@ public class Interest implements IContents {
     }
 
     public void updated () {
-        lastTimeUpdated = new Date();
+        lastTimeUpdated = Calendar.getInstance();
     }
     public void asked () {
-        lastTimeAsked = new Date();
+        lastTimeAsked = Calendar.getInstance();
     }
 
     public List<String> getContents(){
@@ -55,20 +55,20 @@ public class Interest implements IContents {
         return 0;
     }
 
-    public Date getLastTimeUpdated(){
+    public Calendar getLastTimeUpdated(){
         return lastTimeUpdated;
     }
 
-    public Date getLastTimeAsked(){
+    public Calendar getLastTimeAsked(){
         return lastTimeAsked;
     }
 
     public void setUpdated(){
-        this.lastTimeUpdated = new Date();
+        this.lastTimeUpdated = Calendar.getInstance();
     }
 
     public void setAsked(){
-        this.lastTimeAsked = new Date();
+        this.lastTimeAsked = Calendar.getInstance();
     }
 
 }

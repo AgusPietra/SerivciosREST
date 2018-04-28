@@ -1,16 +1,26 @@
 package com.rb.module.interest.task;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.rb.module.interest.service.InterestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DeleteOldInterestsAndUsersFollowedTask {
-    @Scheduled(fixedRate = 1000) //Tiempo en el que si ningún usuario preguntó por este contenido, lo borro de las tablas.
+
+    private InterestService interestService;
+
+    @Autowired
+    public DeleteOldInterestsAndUsersFollowedTask(InterestService interestService) {
+        this.interestService = interestService;
+    }
+
+    @Scheduled(fixedRate = 100000) //Tiempo en el que si ningún usuario preguntó por este contenido, lo borro de las tablas.
     public void DeleteOldInterestsAndUsersFollowed() {
-        //TODO
+        long numberOfInterests = interestService.count();
+//        long numberErased = interestService.countInterestsByLastTimeAskedAfter(new Date());
+
+        System.out.println("numberOfInterests: " + numberOfInterests);
+//        System.out.println("numberErased: " + numberErased);
     }
 }

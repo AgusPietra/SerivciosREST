@@ -1,7 +1,7 @@
 package com.rb.module.twitter4JImp.task;
 
 import java.util.ArrayList;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 import com.rb.module.interest.entity.Interest;
@@ -93,7 +93,7 @@ public class UpdateContentsTask {
             System.out.println("Twitter exception: " + e);
         }
         System.out.println("quered twitter");
-        System.out.println(new Date());
+//        System.out.println(new Date());
 /*
         try {
 

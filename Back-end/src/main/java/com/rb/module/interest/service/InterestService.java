@@ -47,4 +47,12 @@ public class InterestService {
 
         }
     }
+
+//    public long countInterestsByLastTimeAskedAfter(Date asked){
+//        return interestRepository.countInterestsByLastTimeAskedAfter(asked);
+//    }
+//
+    public long count(){
+        return interestRepository.count();
+    }
 }
