@@ -48,12 +48,8 @@ export class BoardsService {
   }
 
   checkIfBoardNamesUsed(newName: string, actualIndex: number){
-    console.log('new name: ' + newName);
-    console.log('actual index: ' + actualIndex);
     let returnValue = false;
     this.boards.forEach((board, index) => {
-      console.log('board name: ' + board.boardName);
-      console.log('board index: ' + index);
       if ( board.boardName === newName && ((index !== actualIndex && index !== -1) || index === -1 )) {
         returnValue = true;
       }

@@ -24,7 +24,6 @@ public class Interest implements IContents {
         lastTimeUpdated = new Date();
         lastTimeUpdated.setTime(0);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
         lastTimeAsked = new Date();
-        lastTimeAsked.setTime(0);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
     }
 
     public String getInterestName() {
@@ -54,6 +53,22 @@ public class Interest implements IContents {
     public static int calculateHashCode(List<String> contents) {
         //TODO calculate with contents.
         return 0;
+    }
+
+    public Date getLastTimeUpdated(){
+        return lastTimeUpdated;
+    }
+
+    public Date getLastTimeAsked(){
+        return lastTimeAsked;
+    }
+
+    public void setUpdated(){
+        this.lastTimeUpdated = new Date();
+    }
+
+    public void setAsked(){
+        this.lastTimeAsked = new Date();
     }
 
 }

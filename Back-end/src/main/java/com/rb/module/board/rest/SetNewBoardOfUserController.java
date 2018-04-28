@@ -3,6 +3,7 @@ package com.rb.module.board.rest;
 import com.rb.module.board.entity.Board;
 import com.rb.module.board.service.BoardService;
 import com.rb.module.common.response.codes.Code;
+import com.rb.module.interest.service.InterestService;
 import com.rb.module.user.entity.User;
 import com.rb.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ public class SetNewBoardOfUserController {
 
     private BoardService boardService;
     private UserService userService;
+    private InterestService interestService;
     @Autowired
-    public SetNewBoardOfUserController(UserService userService, BoardService boardService) {
+    public SetNewBoardOfUserController(UserService userService, BoardService boardService, InterestService interestService) {
         this.userService = userService;
         this.boardService = boardService;
+        this.interestService = interestService;
     }
 
 
@@ -41,6 +44,7 @@ public class SetNewBoardOfUserController {
             if (exsistingBoard != null)
                 this.boardService.deleteByUserNameAndBoardName(userName, boardName);
             this.boardService.save(board);
+            this.interestService.setNewInterests(board.interests);
             System.out.println("Saved new board named: " + board.getBoardName() + " from user: " + board.getUserName());
 
         }
