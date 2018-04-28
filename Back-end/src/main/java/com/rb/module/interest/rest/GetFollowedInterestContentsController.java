@@ -5,8 +5,9 @@ import com.rb.module.interest.service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
-/*****************UNUSED***************/
 
 @CrossOrigin
 @RestController
@@ -18,16 +19,17 @@ public class GetFollowedInterestContentsController {
         this.interestService = interestService;
     }
 
-    @RequestMapping(value = {"/followedinterests/{followedInterest}"}, method = RequestMethod.GET)
-    public Interest followedInterest(@PathVariable(value="followedInterest") String followedInterestName) {
+    @RequestMapping(value = {"/interests/{interest}"}, method = RequestMethod.GET)
+    public List<String> followedInterest(@PathVariable(value="interest") String interestName) {
 
-        Interest followedInterestItem = this.interestService.findByInterestName(followedInterestName);
-        if(followedInterestItem == null) {
+        System.out.println("accessing content of: " + interestName);
+        Interest interestItem = this.interestService.findByInterestName(interestName);
+        if(interestItem == null) {
             //TODO manejar que pasa si el usuario pide un item que no está
-            return new Interest("");
+            return new ArrayList<>();
         }
-        followedInterestItem.asked();//Actualizo el Date de la última consulta.
-        this.interestService.save(followedInterestItem);//TODO, hacer úptimo, solo actualizar el date de consulta
-        return followedInterestItem;
+        interestItem.asked();//Actualizo el Date de la última consulta.
+        this.interestService.save(interestItem);//TODO, hacer úptimo, solo actualizar el date de consulta
+        return interestItem.getContents();
     }
 }
