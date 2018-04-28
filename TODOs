@@ -19,11 +19,6 @@ Implementar interfaces para los componentes que aún no tengan.
 
 Front-end
 
-Protección para nombres repetidos de boards.
-
-Obtener la info de los boards seleccionados para mostrar en pantalla el contenido de twitter desde el servidor.
 
 Hacer que el signin y el signup realmente funcionen como tales (siempre te deja pasar).
-
-
 

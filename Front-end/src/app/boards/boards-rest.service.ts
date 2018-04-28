@@ -29,11 +29,6 @@ export class BoardsRestService implements OnInit{
     }).map(
       (boards) => {
         console.log(boards);
-        // for (let board of boards) {
-        //   if (!board.in['ingredients']) {
-        //     recipe['ingredients'] = [];
-        //   }
-        // }
         return boards;
       }
     )
@@ -48,7 +43,7 @@ export class BoardsRestService implements OnInit{
   }
 
   public setBoards() {
-    console.log('getting boards from user ' + this.authentService.authenticatedUserName + ' from server');
+    console.log('setting boards from user ' + this.authentService.authenticatedUserName + ' from server');
 
     this.httpClient.post<ServerResponse>('http://localhost:8080/users/' + this.authentService.authenticatedUserName + '/boards', this.boardsService.getBoards(), {
       observe: 'body',

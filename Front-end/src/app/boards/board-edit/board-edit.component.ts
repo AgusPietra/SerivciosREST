@@ -82,7 +82,7 @@ export class BoardEditComponent implements OnInit {
   }
 
   usedBoardNames(control: FormControl): {[s: string]: boolean}{
-    if (this.boardsService.checkIfBoardNamesUsed(control.value)) {
+    if (this.boardsService.checkIfBoardNamesUsed(control.value, this.editMode ? this.id : -1)) {
       return {'boardNameUsed': true};
     }
     return null;

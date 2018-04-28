@@ -8,6 +8,8 @@ import {SharedModule} from '../shared/shared.module';
 import {TranslatorService} from '../shared/translator.service';
 import {BoardsService} from '../boards/boards.service';
 import {BoardsRestService} from '../boards/boards-rest.service';
+import {InterestsService} from '../interest/interests.service';
+import {InterestsRestService} from '../interest/interests.rest.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {BoardsRestService} from '../boards/boards-rest.service';
     AuthentService,
     TranslatorService,
     BoardsService,
-    BoardsRestService
+    BoardsRestService,
+    InterestsService,
+    InterestsRestService,
   ]
 })
 export class CoreModule {}

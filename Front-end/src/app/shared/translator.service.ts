@@ -44,6 +44,7 @@ export class TranslatorService {
         'Unknown user name': 'Unknown user name',
         'Password error': 'Password error',
         'Can\'t connect': 'Can\'t establish connection to server',
+        'Refresh': 'Refresh',
       }
     },
     'Spanish' : {
@@ -70,6 +71,7 @@ export class TranslatorService {
         'Unknown user name': 'Nombre de usuario desconocido',
         'Password error': 'Contraseña incorrecta',
         'Can\'t connect': 'No hay conexión con el servidor',
+        'Refresh': 'Refrescar',
       }
     }
   };
