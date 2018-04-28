@@ -5,35 +5,17 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
+    <button class="btn btn-primary" (click)="onEdit()">{{'Edit' | translate}}</button>
+    <button type="button" class="btn btn-danger" (click)="onDelete()">{{'Delete' | translate}}</button>
+    <button type="button" class="btn btn-success" (click)="onRefresh()">{{'Refresh' | translate}}</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
     <h4>{{ 'Interests' | translate }}</h4>
     <app-interest
       *ngFor="let interestEl of interests"
       [interest] = interestEl
     ></app-interest>
-    <!--<ul class="list-group">-->
-      <!--<li-->
-        <!--class="list-group-item"-->
-        <!--*ngFor="let interest of interests">-->
-        <!--<div>-->
-          <!--{{ interest.interestName }}-->
-          <!--<hr>-->
-          <!--<ul class="list-group">-->
-            <!--<li-->
-              <!--class="list-group-item"-->
-              <!--*ngFor="let content of interest.contents">-->
-              <!--{{content}}-->
-            <!--</li>-->
-          <!--</ul>-->
-
-        <!--</div>-->
-      <!--</li>-->
-    <!--</ul>-->
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <button class="btn btn-primary" (click)="onEdit()">{{'Edit' | translate}}</button>
-    <button type="button" class="btn btn-danger" (click)="onDelete()">{{'Delete' | translate}}</button>
-    <button type="button" class="btn btn-success" (click)="onRefresh()">{{'Refresh' | translate}}</button>
   </div>
 </div>
