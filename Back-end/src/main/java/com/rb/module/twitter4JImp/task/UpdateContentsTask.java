@@ -1,5 +1,6 @@
 package com.rb.module.twitter4JImp.task;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class UpdateContentsTask {
         try {
             System.out.println("quering tweets");
 
+            List<String> contents = new ArrayList<>();
             //TODO, a todos los usuarios e intereses los trata de la misma forma, eso no es así, hay que diferenciar si comienza con @ o #
             for(Interest interest: interests) {
                 String querySt = interest.getInterestName();
@@ -55,10 +57,15 @@ public class UpdateContentsTask {
 
                     QueryResult result = twitter.search(query);
                     int tweetN = 0;
+                    contents.clear();
                     for (Status status : result.getTweets()) {
                         System.out.println("Twit num: " + ++tweetN);
                         System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                        contents.add(status.getText());
                     }
+                    interest.setContents(contents);
+                    interest.setUpdated();
+                    interestService.save(interest);
                 }
                 if(querySt.startsWith("#")){
                     querySt = querySt + "+exclude:retweets";
@@ -69,10 +76,15 @@ public class UpdateContentsTask {
 
                     QueryResult result = twitter.search(query);
                     int tweetN = 0;
+                    contents.clear();
                     for (Status status : result.getTweets()) {
                         System.out.println("Twit num: " + ++tweetN);
                         System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
+                        contents.add(status.getText());
                     }
+                    interest.setContents(contents);
+                    interest.setUpdated();
+                    interestService.save(interest);
                 }
             }
 
