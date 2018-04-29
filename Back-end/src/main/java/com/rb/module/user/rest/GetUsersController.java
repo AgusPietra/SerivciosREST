@@ -23,8 +23,6 @@ public class GetUsersController {
     }
 
     private String userName = "";
-    //private String interest = "";
-
 
     @RequestMapping(value = {"/users"}, method = RequestMethod.GET)
     public List<String> GetUsers() {

@@ -2,10 +2,11 @@ package com.rb.module.board.entity;
 
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+public class Board implements Serializable {
     @Id
     public String id;
 

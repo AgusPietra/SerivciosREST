@@ -42,7 +42,7 @@ public class SetNewBoardOfUserController {
             Board exsistingBoard = this.boardService.findByUserNameAndBoardName(userName, boardName);
 
             if (exsistingBoard != null)
-                this.boardService.deleteByUserNameAndBoardName(userName, boardName);
+                this.boardService.deleteAllByUserNameAndBoardName(userName, boardName);
             this.boardService.save(board);
             this.interestService.setNewInterests(board.interests);
             System.out.println("Saved new board named: " + board.getBoardName() + " from user: " + board.getUserName());
