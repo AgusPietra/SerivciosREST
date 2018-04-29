@@ -23,7 +23,7 @@ public class GetFollowedInterestContentsController {
     public List<String> followedInterest(@PathVariable(value="interest") String interestName) {
 
         System.out.println("accessing content of: " + interestName);
-        Interest interestItem = this.interestService.findByInterestName(interestName);
+        Interest interestItem = this.interestService.findFirstByInterestName(interestName);
         if(interestItem == null) {
             interestItem = new Interest(interestName);//El interés fue borrado de la tabla, porque hace mucho que no
                                                       // se consultaba

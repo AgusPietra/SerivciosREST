@@ -10,7 +10,7 @@ Implementar interfaces para los componentes que aún no tengan.
 
 Vincular login de frontend con login de twitter, para no tener limitaciones en los requests de la API.
 
-Que se cheque cada cierto tiempo si figura más de una vez un interés en la lista de intereses únicos, y se borren los duplicados.
+
 
 
 Front-end
