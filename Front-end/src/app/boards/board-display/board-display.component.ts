@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Board} from '../board.model';
 import {BoardsService} from '../boards.service';
@@ -13,13 +13,14 @@ import {InterestsRestService} from '../../interest/interests.rest.service';
   templateUrl: './board-display.component.html',
   styleUrls: ['./board-display.component.css']
 })
-export class BoardDisplayComponent implements OnInit {
+export class BoardDisplayComponent implements OnInit, OnDestroy {
 
   board: Board;
   id: number;
   interests: Interest[];
   interestsNames: string[];
   subscritionInterests: Subscription;
+  // refreshInterval: number;
 
   constructor(private boardsService: BoardsService,
               private boardsRestService: BoardsRestService,
@@ -49,11 +50,21 @@ export class BoardDisplayComponent implements OnInit {
             this.interestsNames.push(interestName);
           }
           this.interestsService.setInterestsNamesList(this.interestsNames);
+          this.updateContents();
 
         }
       );
+    // this.refreshInterval = setInterval( () => {
+    //   this.updateContents();
+    //  }, 30000);
+    setTimeout( () => {
+      this.updateContents();
+     }, 6000);
   }
 
+  ngOnDestroy(){
+    // clearInterval(this.refreshInterval);
+  }
 
   onEdit(){
     this.router.navigate(['edit'], {relativeTo: this.route});

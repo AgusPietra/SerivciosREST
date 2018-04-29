@@ -29,37 +29,33 @@ public class UpdateContentsTask {
     }
 
     Twitter twitter = TwitterFactory.getSingleton();
-    int numberOfUserTweets = 5;
-    int numberOfInterestsTweets = 5;
+    int numberOfInterestsTweets = 20; //Lo mismo que un timeline
 //    int maxDaysBackOfUserTweets = 2;
 //    int maxDaysBackOfInterestsTweets = 2;
 
     //TODO la API de twitter permite devolver tweets dentro de un radio de geolocalización del usuario que consulta.
     //Eventualmente se podría incorporar...
 
-    @Scheduled(fixedRate = 10000)//Tiempo en el que se chequea si se debe actualizar el contenido
+    @Scheduled(fixedRate = 4000)//Tiempo en el que se chequea si se debe actualizar el contenido
     public void UpdateContentsTime() {
 //        List<Interest> interests = interestService.findAllInterests();
 
     Calendar updatedBefore = Calendar.getInstance();
-    updatedBefore.add(Calendar.MINUTE, -1); //Si un usuario ha preguntado por dicho contenido, y el mismo fue
-        // actualizado hace al menos un minuto, se ejecuta el query de actualización.
+    updatedBefore.add(Calendar.MINUTE, -60); //Si un usuario ha preguntado por dicho contenido, y el mismo fue
+        // actualizado hace al menos x minutos, se ejecuta el query de actualización.
     List<Interest> interests = interestService.findAllInterestsNameByAskedAndLastTimeUpdatedBefore(
             true, updatedBefore);
         try {
             List<String> contents = new ArrayList<>();
             for(Interest interest: interests) {
                 String querySt = interest.getInterestName();
+                System.out.println("Quering about: " + querySt);
                 if(querySt.startsWith("@")){
-                    querySt = querySt.substring(1) + "+exclude:retweets+exclude:replies+exclude:mentions";
-                    Query query = new Query(querySt);
-                    query.count(numberOfUserTweets);
-                    //query.setSince();//YYYY-MM-DD//TODO usar el set Since junto con maxDaysBackOfUserTweets para no traer tweets muy viejos.
 
-                    QueryResult result = twitter.search(query);
+                    List<Status> statuses = twitter.getUserTimeline(querySt.substring(1));
                     int tweetN = 0;
                     contents.clear();
-                    for (Status status : result.getTweets()) {
+                    for (Status status : statuses) {
                         System.out.println("Twit num: " + ++tweetN);
                         System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText());
                         contents.add("@" + status.getUser().getScreenName() + ": " + status.getText());
@@ -72,7 +68,7 @@ public class UpdateContentsTask {
                     querySt = querySt + "+exclude:retweets";
                     Query query = new Query(querySt);
                     query.count(numberOfInterestsTweets);
-                    query.setResultType(Query.RECENT); //Query.MIXED = Query.POPULAR And Query.RECENT
+                    query.setResultType(Query.MIXED); //Query.MIXED = Query.POPULAR And Query.RECENT
                     //query.setSince();//YYYY-MM-DD//TODO usar el set Since junto con maxDaysBackOfInterestsTweets para no traer tweets muy viejos.
 
                     QueryResult result = twitter.search(query);
