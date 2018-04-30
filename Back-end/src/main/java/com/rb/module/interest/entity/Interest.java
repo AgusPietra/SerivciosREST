@@ -16,6 +16,7 @@ public class Interest implements IContents {
     private Calendar lastTimeAsked;
     private boolean asked;
     private int hashCode;
+    private long lastTweetID;
 
     public Interest() {}
 
@@ -26,6 +27,7 @@ public class Interest implements IContents {
         this.lastTimeUpdated.add(Calendar.MONTH,-12);//Inicializo con fecha vieja para que el cron actualice inmediatamente.
         this.lastTimeAsked = Calendar.getInstance();
         this.asked = true;
+        this.lastTweetID = -1;
     }
 
     public String getInterestName() {
@@ -37,6 +39,14 @@ public class Interest implements IContents {
     }
     public void setContents(List<String> contents) {
         this.contents = contents;
+    }
+    public void addContents(List<String> contents) {
+        this.contents.addAll(0, contents);
+    }
+    public void limitContents(int maxNumber) {
+        if (this.contents.size()>maxNumber){
+            this.contents.subList(maxNumber, this.contents.size());
+        }
     }
 
     public int getHashCode() {return this.hashCode; }
@@ -68,4 +78,11 @@ public class Interest implements IContents {
         asked = true;
     }
 
+    public void setLastTweetID(long lastTweetID) {
+        this.lastTweetID = lastTweetID;
+    }
+
+    public long getLastTweetID() {
+        return this.lastTweetID;
+    }
 }

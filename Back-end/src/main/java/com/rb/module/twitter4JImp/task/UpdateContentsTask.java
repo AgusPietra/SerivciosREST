@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import twitter4j.*;
+import twitter4j.conf.ConfigurationBuilder;
 
 
 @Component
@@ -23,9 +24,6 @@ public class UpdateContentsTask {
         this.interestService = interestService;
     }
 
-    Twitter twitter = TwitterFactory.getSingleton();
-    int numberOfInterestsTweets = 20;
-    Paging paging = new Paging(1, numberOfInterestsTweets);
 
     //TODO la API de twitter permite devolver tweets dentro de un radio de geolocalización del usuario que consulta.
     //Eventualmente se podría incorporar...
@@ -33,10 +31,22 @@ public class UpdateContentsTask {
     @Scheduled(fixedRate = 4000)//Tiempo en el que se chequea si se debe actualizar el contenido
     public void UpdateContentsTime() {
 
-    Calendar updatedBefore = Calendar.getInstance();
-    updatedBefore.add(Calendar.MINUTE, -60); //Si un usuario ha preguntado por dicho contenido, y el mismo fue
-        // actualizado hace al menos x minutos, se ejecuta el query de actualización.
-    List<Interest> interests = interestService.findAllInterestsNameByAskedAndLastTimeUpdatedBefore(
+        ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.setOAuthConsumerKey("eK5MoGie7HsglWmkDZeUeAJFt")
+                .setOAuthConsumerSecret("Sb4n2l2FnmuVO0Dehx10julRuNLaDbtSaR9AU5wydQpxDPegnR")
+                .setOAuthAccessToken("34025850-AmF4k536Lj5lusQe75MlyeYKzhHZ8k4AKZebCAy5G")
+                .setOAuthAccessTokenSecret("nuBw2SRHnO4zrKtD1T0F47fWDqIph8gQST1F9ZoIJoKW8")
+                .setTweetModeExtended(true);
+        TwitterFactory tf = new TwitterFactory(configurationBuilder.build());
+        Twitter twitter = tf.getInstance();
+
+        int numberOfInterestsTweets = 100;
+        int maxNumberOfTweetsToSave = 200;
+
+        Calendar updatedBefore = Calendar.getInstance();
+        updatedBefore.add(Calendar.MINUTE, -60); //Si un usuario ha preguntado por dicho contenido, y el mismo fue
+            // actualizado hace al menos x minutos, se ejecuta el query de actualización.
+        List<Interest> interests = interestService.findAllInterestsNameByAskedAndLastTimeUpdatedBefore(
             true, updatedBefore);
         try {
 
@@ -46,15 +56,29 @@ public class UpdateContentsTask {
                 System.out.println("Quering about: " + querySt);
                 if(querySt.startsWith("@")){
 
+                    Paging paging = new Paging(1, numberOfInterestsTweets);
+                    if(interest.getLastTweetID()>0) {
+                        paging = paging.sinceId(interest.getLastTweetID());
+                    }
+
                     List<Status> statuses = twitter.getUserTimeline(querySt.substring(1), paging);
+                    if(statuses.isEmpty()){
+                        System.out.println("There are no new tweets about: " + querySt);
+                    }
+                    else{
+                        interest.setLastTweetID(statuses.get(0).getId());
+                    }
+
                     int tweetN = 0;
                     contents.clear();
                     for (Status status : statuses) {
                         System.out.println("Twit num: " + ++tweetN);
                         System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText());
                         contents.add("@" + status.getUser().getScreenName() + ": " + status.getText());
+                        System.out.println("ID: " + status.getId());
                     }
-                    interest.setContents(contents);
+                    interest.addContents(contents);
+                    interest.limitContents(maxNumberOfTweetsToSave);
                     interest.setUpdated();
                     interestService.save(interest);
                 }
@@ -63,17 +87,29 @@ public class UpdateContentsTask {
                     Query query = new Query(querySt);
                     query.count(numberOfInterestsTweets);
                     query.setResultType(Query.MIXED); //Query.MIXED = Query.POPULAR And Query.RECENT
-                    //query.setSince();//YYYY-MM-DD//TODO usar el set Since junto con maxDaysBackOfInterestsTweets para no traer tweets muy viejos.
+
+                    if(interest.getLastTweetID()>0) {
+                        query.sinceId(interest.getLastTweetID());
+                    }
 
                     QueryResult result = twitter.search(query);
                     int tweetN = 0;
                     contents.clear();
+
+                    if(result.getTweets().isEmpty()){
+                        System.out.println("There are no new tweets about: " + querySt);
+                    }
+                    else{
+                        interest.setLastTweetID(result.getTweets().get(0).getId());
+                    }
+
                     for (Status status : result.getTweets()) {
                         System.out.println("Twit num: " + ++tweetN);
                         System.out.println("@" + status.getUser().getScreenName() + ": " + status.getText());
                         contents.add("@" + status.getUser().getScreenName() + ": " + status.getText());
                     }
-                    interest.setContents(contents);
+                    interest.addContents(contents);
+                    interest.limitContents(maxNumberOfTweetsToSave);
                     interest.setUpdated();
                     interestService.save(interest);
                 }
