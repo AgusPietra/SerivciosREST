@@ -1,6 +1,6 @@
 <div>
-  {{ interest.interestName }}
   <hr>
+  {{ interest.interestName }}
   <ul class="list-group">
     <li
     class="list-group-item"
@@ -8,4 +8,5 @@
     {{content}}
     </li>
   </ul>
+  <button type="button" class="btn btn-success center-block btn-sm" (click)="onMore()">{{'More' | translate}}</button>
 </div>

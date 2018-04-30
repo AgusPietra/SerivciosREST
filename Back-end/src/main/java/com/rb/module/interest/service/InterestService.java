@@ -21,8 +21,8 @@ public class InterestService {
         this.interestRepository = followedInterestRepository;
     }
 
-    public Interest findByInterestName(String interestName){
-        return interestRepository.findByInterestName(interestName);
+    public Interest findFirstByInterestName(String interestName){
+        return interestRepository.findFirstByInterestName(interestName);
     }
     public List<Interest> findAllInterests(){
         return interestRepository.findAll();
@@ -34,7 +34,7 @@ public class InterestService {
 
     public void setNewInterests(List<String> interestsNames){
         for(String interestName: interestsNames){
-            Interest existingInterest = findByInterestName(interestName);
+            Interest existingInterest = findFirstByInterestName(interestName);
             if(existingInterest == null){//Si no existe en la base de intereses, lo creo.
                 Interest interest = new Interest(interestName);
                 save(interest);

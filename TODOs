@@ -1,23 +1,25 @@
 Back-end
 
 
-Implementar calculateHashCode en Interest.
 
 Implementar una cola de mensajes para tener una arquitectura non-blocking.
-
-Ver como modificar el query de twitter para que traiga los tweets de los usuarios seguidos, más no sus menciones.
 
 Implementar interfaces para los componentes que aún no tengan.
 
 @CrossOrigin debe ser condicional a desarrollo y no vincularse para producción en los controladores.
 
+Vincular login de frontend con login de twitter, para no tener limitaciones en los requests de la API:
+https://developer.twitter.com/en/docs/basics/rate-limiting
 
 
 
 
 Front-end
 
-Que los contenidos de un board se refresquen automáticamente.
+Hacer que el signin y el signup tengan seguridad (y, eventualmente, vincularlo con un login de twitter)
 
-Hacer que el signin y el signup realmente funcionen como tales (siempre te deja pasar).
+Que al pedir más contenido, no vuelva a pedir lo que ya tiene.
+
+Que el interests service tenga todos los intereses de los boards, en lugar de solo los activos, de forma que al cambiar de board,
+no haya que volver a pedir el contenido devuelta.
 

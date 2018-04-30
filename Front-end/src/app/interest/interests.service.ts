@@ -5,18 +5,18 @@ import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class InterestsService {
 
-  private interestNamesList: string[];
+  // private interestNamesList: string[];
   private interests: Interest[];
 
   constructor() {
     this.interests = new Array<Interest>();
-    this.interestNamesList = new Array<string>();
+    // this.interestNamesList = new Array<string>();
   }
 
   interestsChanged = new Subject<Interest[]>();
 
   setInterestsNamesList(interestNamesList: string[]) {
-    this.interestNamesList = interestNamesList;
+    // this.interestNamesList = interestNamesList;
     this.interests.splice(0, this.interests.length);
 
     for (const interestName of interestNamesList) {
@@ -28,19 +28,32 @@ export class InterestsService {
     console.log('Interests changed, qty: ' + this.interests.length);
   }
 
-  getInterestsNamesList() {
-    return this.interestNamesList.slice();
-  }
+  // getInterestsNamesList() {
+  //   return this.interestNamesList.slice();
+  // }
 
   getInterestContent(index: number) {
     return this.interests[index];
   }
 
+  getInterests() {
+    return this.interests;
+  }
+
   setInterestContent(interestName: string, interestContents: string []) {
-    for(let interest of this.interests) {
+    for(const interest of this.interests) {
       if (interest.interestName === interestName) {
         interest.setContents(interestContents);
         this.interestsChanged.next(this.interests.slice());
+        break;
+      }
+    }
+  }
+
+  addInterestCountAsked(interestAux: Interest, countAskedAdded: number) {
+    for(const interest of this.interests) {
+      if (interest.interestName === interestAux.interestName) {
+        interest.countAsked += countAskedAdded;
         break;
       }
     }
