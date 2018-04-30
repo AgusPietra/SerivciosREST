@@ -20,7 +20,8 @@ public class GetFollowedInterestContentsController {
     }
 
     @RequestMapping(value = {"/interests/{interest}"}, method = RequestMethod.GET)
-    public List<String> followedInterest(@PathVariable(value="interest") String interestName) {
+    public List<String> followedInterest(@PathVariable(value="interest") String interestName,
+                                         @RequestParam("count") int countAsked) {
 
         System.out.println("accessing content of: " + interestName);
         Interest interestItem = this.interestService.findFirstByInterestName(interestName);
@@ -33,6 +34,6 @@ public class GetFollowedInterestContentsController {
         }
         interestItem.setAsked();//Aviso que se preguntó
         this.interestService.save(interestItem);//TODO, hacer úptimo, solo actualizar la indicación de que se consultó
-        return interestItem.getContents();
+        return interestItem.getContents(countAsked);
     }
 }

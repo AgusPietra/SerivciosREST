@@ -37,6 +37,9 @@ public class Interest implements IContents {
     public List<String> getContents(){
         return contents;
     }
+    public List<String> getContents(int count){
+        return contents.subList(0,count);
+    }
     public void setContents(List<String> contents) {
         this.contents = contents;
     }
