@@ -8,7 +8,8 @@ Implementar interfaces para los componentes que aún no tengan.
 
 @CrossOrigin debe ser condicional a desarrollo y no vincularse para producción en los controladores.
 
-Vincular login de frontend con login de twitter, para no tener limitaciones en los requests de la API.
+Vincular login de frontend con login de twitter, para no tener limitaciones en los requests de la API:
+https://developer.twitter.com/en/docs/basics/rate-limiting
 
 
 

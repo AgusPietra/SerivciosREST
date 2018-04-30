@@ -11,12 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.Query;
-import twitter4j.QueryResult;
+import twitter4j.*;
 
 
 @Component
@@ -29,16 +24,14 @@ public class UpdateContentsTask {
     }
 
     Twitter twitter = TwitterFactory.getSingleton();
-    int numberOfInterestsTweets = 20; //Lo mismo que un timeline
-//    int maxDaysBackOfUserTweets = 2;
-//    int maxDaysBackOfInterestsTweets = 2;
+    int numberOfInterestsTweets = 20;
+    Paging paging = new Paging(1, numberOfInterestsTweets);
 
     //TODO la API de twitter permite devolver tweets dentro de un radio de geolocalización del usuario que consulta.
     //Eventualmente se podría incorporar...
 
     @Scheduled(fixedRate = 4000)//Tiempo en el que se chequea si se debe actualizar el contenido
     public void UpdateContentsTime() {
-//        List<Interest> interests = interestService.findAllInterests();
 
     Calendar updatedBefore = Calendar.getInstance();
     updatedBefore.add(Calendar.MINUTE, -60); //Si un usuario ha preguntado por dicho contenido, y el mismo fue
@@ -46,13 +39,14 @@ public class UpdateContentsTask {
     List<Interest> interests = interestService.findAllInterestsNameByAskedAndLastTimeUpdatedBefore(
             true, updatedBefore);
         try {
+
             List<String> contents = new ArrayList<>();
             for(Interest interest: interests) {
                 String querySt = interest.getInterestName();
                 System.out.println("Quering about: " + querySt);
                 if(querySt.startsWith("@")){
 
-                    List<Status> statuses = twitter.getUserTimeline(querySt.substring(1));
+                    List<Status> statuses = twitter.getUserTimeline(querySt.substring(1), paging);
                     int tweetN = 0;
                     contents.clear();
                     for (Status status : statuses) {
