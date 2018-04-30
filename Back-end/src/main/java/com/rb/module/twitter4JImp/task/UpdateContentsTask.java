@@ -48,12 +48,13 @@ public class UpdateContentsTask {
             // actualizado hace al menos x minutos, se ejecuta el query de actualización.
         List<Interest> interests = interestService.findAllInterestsNameByAskedAndLastTimeUpdatedBefore(
             true, updatedBefore);
-        try {
 
-            List<String> contents = new ArrayList<>();
-            for(Interest interest: interests) {
-                String querySt = interest.getInterestName();
-                System.out.println("Quering about: " + querySt);
+
+        List<String> contents = new ArrayList<>();
+        for(Interest interest: interests) {
+            String querySt = interest.getInterestName();
+            System.out.println("Quering about: " + querySt);
+            try{
                 if(querySt.startsWith("@")){
 
                     Paging paging = new Paging(1, numberOfInterestsTweets);
@@ -114,11 +115,12 @@ public class UpdateContentsTask {
                     interestService.save(interest);
                 }
             }
+            catch (TwitterException e){
+                System.out.println("Twitter exception: " + e);
+            }
+        }
 
-        }
-        catch (TwitterException e){
-            System.out.println("Twitter exception: " + e);
-        }
+
 //        System.out.println("quered twitter");
 //        System.out.println(new Date());
 /*
