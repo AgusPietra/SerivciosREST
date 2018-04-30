@@ -1,5 +1,14 @@
-Back-end
+Autenticación de twitter. 
+Se podrían agregar a la tabla de usuarios los access token y access token secret de dicho usuario en twitter.
+Para obtenerlos: http://twitter4j.org/en/code-examples.html#oauth
+Si no los tiene (o estuvieran expirados), desde el front end no se le permitiría ver ni actualizar nada. Solo podría apretar un botón que
+lo llevaría a la páginade autenticación de twitter. 
+Una vez hecho esto, una forma de aprovecharlo para los requests de twitter sería que cuando un usuario pide un contenido, sus
+tokens quedan asociados a ese contenido, y se solicitan a twitter utilizándo dichos tokens. De esta forma los contenidos no se repiten
+para cada usuario aunque tengan los mismos intereses, pero puedo distribuir la carga de queries entre usuarios activos.
 
+
+Back-end
 
 
 Implementar una cola de mensajes para tener una arquitectura non-blocking.
