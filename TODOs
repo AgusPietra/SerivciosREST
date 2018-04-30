@@ -16,7 +16,10 @@ https://developer.twitter.com/en/docs/basics/rate-limiting
 
 Front-end
 
-Que los contenidos de un board se refresquen automáticamente.
-
 Hacer que el signin y el signup tengan seguridad (y, eventualmente, vincularlo con un login de twitter)
+
+Que al pedir más contenido, no vuelva a pedir lo que ya tiene.
+
+Que el interests service tenga todos los intereses de los boards, en lugar de solo los activos, de forma que al cambiar de board,
+no haya que volver a pedir el contenido devuelta.
 

@@ -49,4 +49,13 @@ export class InterestsService {
       }
     }
   }
+
+  addInterestCountAsked(interestAux: Interest, countAskedAdded: number) {
+    for(const interest of this.interests) {
+      if (interest.interestName === interestAux.interestName) {
+        interest.countAsked += countAskedAdded;
+        break;
+      }
+    }
+  }
 }

@@ -50,17 +50,19 @@ export class BoardDisplayComponent implements OnInit, OnDestroy {
             this.interestsNames.push(interestName);
           }
           this.interestsService.setInterestsNamesList(this.interestsNames);
+
+          setTimeout( () => {
+            this.updateContents();
+          }, 1000);
+          setTimeout( () => {
+            this.updateContents();
+          }, 6000);
         }
       );
     // this.refreshInterval = setInterval( () => {
     //   this.updateContents();
     //  }, 30000);
-    setTimeout( () => {
-      this.updateContents();
-     }, 1000);
-    setTimeout( () => {
-      this.updateContents();
-    }, 6000);
+
   }
 
   ngOnDestroy(){

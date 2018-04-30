@@ -45,6 +45,7 @@ export class TranslatorService {
         'Password error': 'Password error',
         'Can\'t connect': 'Can\'t establish connection to server',
         'Refresh': 'Refresh',
+        'More': 'More',
       }
     },
     'Spanish' : {
@@ -72,6 +73,7 @@ export class TranslatorService {
         'Password error': 'Contraseña incorrecta',
         'Can\'t connect': 'No hay conexión con el servidor',
         'Refresh': 'Refrescar',
+        'More': 'Más',
       }
     }
   };
