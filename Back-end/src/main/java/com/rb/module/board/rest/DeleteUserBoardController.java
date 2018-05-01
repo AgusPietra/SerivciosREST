@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-public class DeleteBoardOfUserController {
+public class DeleteUserBoardController {
 
     private IKafkaProducers kafkaProducers;
     @Autowired
-    public DeleteBoardOfUserController(IKafkaProducers kafkaProducers) {
+    public DeleteUserBoardController(IKafkaProducers kafkaProducers) {
         this.kafkaProducers = kafkaProducers;
     }
 

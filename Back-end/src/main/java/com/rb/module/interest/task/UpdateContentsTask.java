@@ -1,4 +1,4 @@
-package com.rb.module.twitter4JImp.task;
+package com.rb.module.interest.task;
 
 import java.util.ArrayList;
 //import java.util.Date;

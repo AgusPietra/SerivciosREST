@@ -57,6 +57,9 @@ export class BoardDisplayComponent implements OnInit, OnDestroy {
           setTimeout( () => {
             this.updateContents();
           }, 6000);
+          setInterval( () => {
+            this.updateContents();
+          }, 60000);
         }
       );
     // this.refreshInterval = setInterval( () => {
