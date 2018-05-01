@@ -21,10 +21,7 @@ public class DeleteBoardOfUserController {
 
     @RequestMapping(value = {"/users/{userName}/boards/{boardName}"}, method = RequestMethod.DELETE)
     public Code deleteBoard(@PathVariable(value="userName") String userName, @PathVariable(value="boardName") String boardName) {
-
-        kafkaProducers.sendPetition("Delete board" + boardName + " from: " + userName);
         kafkaProducers.deleteBoard(new Board(userName, boardName));
-
         return new Code(0);
     }
 }
