@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.rb.module.interest.entity.Interest;
-import com.rb.module.interest.service.InterestService;
+import com.rb.module.interest.service.IInterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,9 +18,9 @@ import twitter4j.conf.ConfigurationBuilder;
 @Component
 public class UpdateContentsTask {
 
-    private InterestService interestService;
+    private IInterestService interestService;
     @Autowired
-    public UpdateContentsTask(InterestService interestService) {
+    public UpdateContentsTask(IInterestService interestService) {
         this.interestService = interestService;
     }
 

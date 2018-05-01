@@ -2,7 +2,7 @@ package com.rb.module.interest.rest;
 
 import com.rb.module.board.entity.Board;
 import com.rb.module.interest.entity.Interest;
-import com.rb.module.interest.service.InterestService;
+import com.rb.module.interest.service.IInterestService;
 import com.rb.module.kafka.producers.IKafkaProducers;
 import com.rb.module.kafka.producers.KafkaProducers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import java.util.List;
 @RestController
 public class GetFollowedInterestContentsController {
 
-    private InterestService interestService;
+    private IInterestService interestService;
     private IKafkaProducers kafkaProducers;
     @Autowired
-    public GetFollowedInterestContentsController(IKafkaProducers kafkaProducers, InterestService interestService) {
+    public GetFollowedInterestContentsController(IKafkaProducers kafkaProducers, IInterestService interestService) {
         this.interestService = interestService;
         this.kafkaProducers = kafkaProducers;
     }

@@ -1,6 +1,6 @@
 package com.rb.module.interest.task;
 
-import com.rb.module.interest.service.InterestService;
+import com.rb.module.interest.service.IInterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.Calendar;
 
 @Component
-public class DeleteOldInterestsAndUsersFollowedTask {
+public class DeleteOldInterestsTask {
 
-    private InterestService interestService;
+    private IInterestService interestService;
 
     @Autowired
-    public DeleteOldInterestsAndUsersFollowedTask(InterestService interestService) {
+    public DeleteOldInterestsTask(IInterestService interestService) {
         this.interestService = interestService;
     }
 

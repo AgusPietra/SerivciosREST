@@ -1,10 +1,10 @@
 package com.rb.module.board.rest;
 
 import com.rb.module.board.entity.Board;
-import com.rb.module.board.service.BoardService;
+import com.rb.module.board.service.IBoardService;
 import com.rb.module.common.response.codes.Code;
 import com.rb.module.user.entity.User;
-import com.rb.module.user.service.UserService;
+import com.rb.module.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class SetBoardsOfUserController {
 
 
-    private BoardService boardService;
-    private UserService userService;
+    private IBoardService boardService;
+    private IUserService userService;
     @Autowired
-    public SetBoardsOfUserController(UserService userService, BoardService boardService) {
+    public SetBoardsOfUserController(IUserService userService, IBoardService boardService) {
         this.userService = userService;
         this.boardService = boardService;
     }

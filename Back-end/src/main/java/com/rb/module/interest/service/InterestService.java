@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @EnableMongoRepositories(basePackageClasses = {IInterestRepository.class})
-public class InterestService {
+public class InterestService implements IInterestService{
 
     @Autowired
     private IInterestRepository interestRepository;

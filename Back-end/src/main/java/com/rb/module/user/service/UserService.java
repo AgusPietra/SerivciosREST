@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @EnableMongoRepositories(basePackageClasses = IUserRepository.class)
-public class UserService {
+public class UserService implements IUserService{
 
     @Autowired
     private IUserRepository userRepository;

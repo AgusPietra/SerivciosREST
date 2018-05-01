@@ -1,33 +1,28 @@
 package com.rb.module.kafka.consumers;
 
 import com.rb.module.board.entity.Board;
-import com.rb.module.board.service.BoardService;
+import com.rb.module.board.service.IBoardService;
 import com.rb.module.interest.entity.Interest;
-import com.rb.module.interest.service.InterestService;
-import com.rb.module.kafka.producers.IKafkaProducers;
-import com.rb.module.user.entity.User;
-import com.rb.module.user.service.UserService;
+import com.rb.module.interest.service.IInterestService;
+import com.rb.module.user.service.IUserService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.annotation.PartitionOffset;
-import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.stereotype.Component;
 import org.springframework.util.SerializationUtils;
 
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
 @Component
 public class KafkaConsumers {
 
-    private UserService userService;
-    private BoardService boardService;
-    private InterestService interestService;
+    private IUserService userService;
+    private IBoardService boardService;
+    private IInterestService interestService;
 
     @Autowired
-    public KafkaConsumers(UserService userService, BoardService boardService, InterestService interestService) {
+    public KafkaConsumers(IUserService userService, IBoardService boardService, IInterestService interestService) {
         this.userService = userService;
         this.boardService = boardService;
         this.interestService = interestService;

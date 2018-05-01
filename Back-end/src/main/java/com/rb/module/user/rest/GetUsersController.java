@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rb.module.user.entity.User;
-import com.rb.module.user.service.UserService;
+import com.rb.module.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class GetUsersController {
 
-    private UserService userService;
+    private IUserService userService;
     @Autowired
-    public GetUsersController(UserService userService) {
+    public GetUsersController(IUserService userService) {
         this.userService = userService;
     }
 

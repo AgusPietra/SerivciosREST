@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @EnableMongoRepositories(basePackageClasses = IBoardRepository.class)
-public class BoardService {
+public class BoardService implements IBoardService{
     @Autowired
     private IBoardRepository boardRepository;
 

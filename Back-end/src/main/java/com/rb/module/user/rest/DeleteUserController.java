@@ -1,9 +1,9 @@
 package com.rb.module.user.rest;
 
-import com.rb.module.board.service.BoardService;
+import com.rb.module.board.service.IBoardService;
 import com.rb.module.board.entity.Board;
 import com.rb.module.user.entity.User;
-import com.rb.module.user.service.UserService;
+import com.rb.module.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +15,10 @@ import java.util.List;
 @RestController
 public class DeleteUserController {
 
-    private UserService userService;
-    private BoardService boardService;
+    private IUserService userService;
+    private IBoardService boardService;
     @Autowired
-    public DeleteUserController(UserService userService, BoardService boardService) {
+    public DeleteUserController(IUserService userService, IBoardService boardService) {
         this.userService = userService;
         this.boardService = boardService;
     }

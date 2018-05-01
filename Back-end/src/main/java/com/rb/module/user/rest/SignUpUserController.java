@@ -2,7 +2,7 @@ package com.rb.module.user.rest;
 
 import com.rb.module.common.response.codes.Code;
 import com.rb.module.user.entity.User;
-import com.rb.module.user.service.UserService;
+import com.rb.module.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class SignUpUserController {
 
-    private UserService userService;
+    private IUserService userService;
     @Autowired
-    public SignUpUserController(UserService userService) {
+    public SignUpUserController(IUserService userService) {
         this.userService = userService;
     }
 
