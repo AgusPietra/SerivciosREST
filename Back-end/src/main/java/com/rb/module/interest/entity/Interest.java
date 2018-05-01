@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class Interest implements IContents {
+public class Interest {
     @Id
     private String id;
 
@@ -61,7 +61,7 @@ public class Interest implements IContents {
         this.hashCode = calculateHashCode(this.contents);
     }
 
-    public static int calculateHashCode(List<String> contents) {
+    public int calculateHashCode(List<String> contents) {
         //TODO calculate with contents.
         return 0;
     }
