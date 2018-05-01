@@ -1,12 +1,12 @@
 <div>
-  <hr>
-  {{ interest.interestName }}
+  <h3>{{ interest.interestName }}</h3>
   <ul class="list-group">
     <li
-    class="list-group-item"
+    class="list-group-item tweeT"
     *ngFor="let content of interest.contents">
     {{content}}
     </li>
   </ul>
   <button type="button" class="btn btn-success center-block btn-sm" (click)="onMore()">{{'More' | translate}}</button>
+  <span style="display:inline-block; height: 10px;"></span>
 </div>

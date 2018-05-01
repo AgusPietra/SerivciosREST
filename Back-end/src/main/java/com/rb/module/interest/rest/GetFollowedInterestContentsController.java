@@ -1,13 +1,10 @@
 package com.rb.module.interest.rest;
 
-import com.rb.module.board.entity.Board;
 import com.rb.module.interest.entity.Interest;
 import com.rb.module.interest.service.IInterestService;
 import com.rb.module.kafka.producers.IKafkaProducers;
-import com.rb.module.kafka.producers.KafkaProducers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -6,7 +6,7 @@ import {InterestsRestService} from './interests.rest.service';
 @Component({
   selector: 'app-interest',
   templateUrl: './interest.component.html',
-  styleUrls: []
+  styleUrls: ['./interest.component.css']
 })
 export class InterestComponent implements OnInit {
 
