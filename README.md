@@ -8,6 +8,11 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
 #### Incorporar gradle.
 
+#### Instalar Kafka
+
+https://www.tutorialspoint.com/apache_kafka/apache_kafka_installation_steps.htm
+Tanto el zookeper-server como el kafka-server deben estar corriendo.
+
 
 ## Front-End
 

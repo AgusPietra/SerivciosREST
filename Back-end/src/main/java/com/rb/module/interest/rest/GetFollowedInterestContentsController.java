@@ -1,7 +1,10 @@
 package com.rb.module.interest.rest;
 
+import com.rb.module.board.entity.Board;
 import com.rb.module.interest.entity.Interest;
 import com.rb.module.interest.service.InterestService;
+import com.rb.module.kafka.producers.IKafkaProducers;
+import com.rb.module.kafka.producers.KafkaProducers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,26 +17,22 @@ import java.util.List;
 public class GetFollowedInterestContentsController {
 
     private InterestService interestService;
+    private IKafkaProducers kafkaProducers;
     @Autowired
-    public GetFollowedInterestContentsController(InterestService interestService) {
+    public GetFollowedInterestContentsController(IKafkaProducers kafkaProducers, InterestService interestService) {
         this.interestService = interestService;
+        this.kafkaProducers = kafkaProducers;
     }
 
     @RequestMapping(value = {"/interests/{interest}"}, method = RequestMethod.GET)
     public List<String> followedInterest(@PathVariable(value="interest") String interestName,
                                          @RequestParam("count") int countAsked) {
 
-        System.out.println("accessing content of: " + interestName);
         Interest interestItem = this.interestService.findFirstByInterestName(interestName);
+        kafkaProducers.getInterestAssociatedActions(interestName);
         if(interestItem == null) {
-            interestItem = new Interest(interestName);//El interés fue borrado de la tabla, porque hace mucho que no
-                                                      // se consultaba
-            this.interestService.save(interestItem);//Entonces lo agrego
-            System.out.println("Added iinterest: "+interestName);
             return new ArrayList<>();
         }
-        interestItem.setAsked();//Aviso que se preguntó
-        this.interestService.save(interestItem);//TODO, hacer úptimo, solo actualizar la indicación de que se consultó
         return interestItem.getContents(countAsked);
     }
 }

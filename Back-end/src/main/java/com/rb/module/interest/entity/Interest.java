@@ -67,21 +67,21 @@ public class Interest implements IContents {
     }
 
     public Calendar getLastTimeUpdated(){
-        return lastTimeUpdated;
+        return this.lastTimeUpdated;
     }
 
     public Calendar getLastTimeAsked(){
-        return lastTimeAsked;
+        return this.lastTimeAsked;
     }
 
     public void setUpdated(){
         this.lastTimeUpdated = Calendar.getInstance();
-        asked = false;
+        this.asked = false;
     }
 
     public void setAsked(){
         this.lastTimeAsked = Calendar.getInstance();
-        asked = true;
+        this.asked = true;
     }
 
     public void setLastTweetID(long lastTweetID) {
@@ -90,5 +90,9 @@ public class Interest implements IContents {
 
     public long getLastTweetID() {
         return this.lastTweetID;
+    }
+
+    public int lastTimeUpdatedMinutesAgo() {
+        return (int)((Calendar.getInstance().getTimeInMillis()-this.lastTimeUpdated.getTimeInMillis())/60000);
     }
 }

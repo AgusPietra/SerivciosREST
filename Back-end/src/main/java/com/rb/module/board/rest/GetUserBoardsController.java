@@ -27,12 +27,6 @@ public class GetUserBoardsController {
     public List<Board> board(@PathVariable(value="userName") String userName) {
 
         List<Board> userBoards = this.boardService.findByUserName(userName);
-//        List<String> boards= new ArrayList<>();
-
-//        for(Board board : userBoards) {
-//            boards.add(board.getBoardName());
-//        }
-
         return userBoards;
     }
 }

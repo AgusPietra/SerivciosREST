@@ -31,8 +31,8 @@ public class BoardService {
         return this.boardRepository.findByUserName(userName);
     }
 
-    public void deleteByUserNameAndBoardName(String userName, String boardName){
-        this.boardRepository.deleteByUserNameAndBoardName(userName, boardName);
+    public void deleteAllByUserNameAndBoardName(String userName, String boardName){
+        this.boardRepository.deleteAllByUserNameAndBoardName(userName, boardName);
     }
 
     public void updateBoardOfUser(Board board, String boardOriginalName){

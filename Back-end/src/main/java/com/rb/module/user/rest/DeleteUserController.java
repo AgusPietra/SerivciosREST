@@ -41,7 +41,7 @@ public class DeleteUserController {
                     interestRepository.save(interestItem);//Lo actualizo en la tabla de intereses únicos.
                 }
                 */
-                this.boardService.deleteByUserNameAndBoardName(userName, board.getBoardName());
+                this.boardService.deleteAllByUserNameAndBoardName(userName, board.getBoardName());
             }
             this.userService.deleteByUserName(userName);
         }

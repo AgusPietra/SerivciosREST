@@ -8,8 +8,6 @@ import com.rb.module.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/*****************UNUSED***************/
-
 @CrossOrigin
 @RestController
 public class SetBoardsOfUserController {
@@ -23,7 +21,7 @@ public class SetBoardsOfUserController {
         this.boardService = boardService;
     }
 
-
+    /*****************UNUSED***************/
     @RequestMapping(value = {"/users/{userName}/boards"}, method = RequestMethod.POST)
     public Code setBoards(@PathVariable(value="userName") String userName, @RequestBody Board[] boards) {
 
