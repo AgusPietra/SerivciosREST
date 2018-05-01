@@ -42,28 +42,6 @@ export class BoardsRestService implements OnInit{
       );
   }
 
-  public setBoards() {
-    console.log('setting boards from user ' + this.authentService.authenticatedUserName + ' from server');
-
-    this.httpClient.post<ServerResponse>('http://localhost:8080/users/' + this.authentService.authenticatedUserName + '/boards', this.boardsService.getBoards(), {
-      observe: 'body',
-      params: new HttpParams()
-    }).subscribe(
-      (data: ServerResponse) => {
-        if ( +data.code === 0 ) {
-          this.serverAlive.next(true);
-        }
-        if ( +data.code === -1 ) {
-          this.serverAlive.next(false);//TODO, diferenciar caso, hay comunicación pero también un error interno
-        }
-      },
-      (error) => {
-        this.serverAlive.next(false);
-      }
-    );
-  }
-
-
   public createBoard(board: Board) {
 
     board.userName = this.authentService.authenticatedUserName;

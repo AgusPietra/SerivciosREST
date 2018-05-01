@@ -1,3 +1,7 @@
+Implementar seguridad al login de la app.
+
+Implementar websockets para eliminar la necesidad de polling.
+
 Autenticación de twitter. 
 Se podrían agregar a la tabla de usuarios los access token y access token secret de dicho usuario en twitter.
 Para obtenerlos: http://twitter4j.org/en/code-examples.html#oauth
@@ -8,27 +12,6 @@ tokens quedan asociados a ese contenido, y se solicitan a twitter utilizándo di
 para cada usuario aunque tengan los mismos intereses, pero puedo distribuir la carga de queries entre usuarios activos.
 
 
-Back-end
 
 
-Implementar una cola de mensajes para tener una arquitectura non-blocking.
-
-Implementar interfaces para los componentes que aún no tengan.
-
-@CrossOrigin debe ser condicional a desarrollo y no vincularse para producción en los controladores.
-
-Vincular login de frontend con login de twitter, para no tener limitaciones en los requests de la API:
-https://developer.twitter.com/en/docs/basics/rate-limiting
-
-
-
-
-Front-end
-
-Hacer que el signin y el signup tengan seguridad (y, eventualmente, vincularlo con un login de twitter)
-
-Que al pedir más contenido, no vuelva a pedir lo que ya tiene.
-
-Que el interests service tenga todos los intereses de los boards, en lugar de solo los activos, de forma que al cambiar de board,
-no haya que volver a pedir el contenido devuelta.
 

@@ -1,23 +1,16 @@
 Tabla de usuarios:
-Contiene los usernames registrados.
+Contiene los usernames registrados, con contaseña. Pendiente hashear.
 
 Tabla de boards:
-Contiene el nombre de usuario, el nombre del board, la lista de intereses y la lista de seguidos.
+Contiene el nombre de usuario, el nombre del board y la lista de intereses (por nombre).
 
 Tabla de intereses únicos:
-Contiene todos los intereses registrados por algún usuario. No se repiten. 
+Contiene todos los intereses registrados por algún usuario. No se repiten. Específicamente:
+Nombre del interés,
+Array de contenidos obtenidos desde twitter.
+Fecha y hora de última actualización.
+Fecha y hora de última vez que fue consultado.
+Indicación de si fue consultado luego de la última actualización.
+El ID del tweet más reciente entre los obtenidos.
 
-Tabla de seguidos únicos:
-Contiene todas las cuentas seguidas por algún usuario. No se repiten.
 
-Tabla de intereses:
-Contiene todos los intereses registrados por algún usuario. No se repiten. Tiene cierta cantidad de contenido asociado a ese interés. Tiene la fecha de actualización de ese contenido. Tiene la fecha de última solicitud de ese contenido por algún usuario.
-Un cron la actualiza cada cierto tiempo, basándose en la última actualización de ese contenido.
-Un cron lo elimina si pasó mucho tiempo de que un usuario pida esa info.
-
-Tabla de seguidos:
-Contiene todas las cuentas seguidas por algún usuario. No se repiten. Tiene cierta cantidad de contenido asociado a ese usuario. Tiene la fecha de actualización de ese contenido. Tiene la fecha de última solicitud de ese contenido por algún usuario.
-Un cron la actualiza cada cierto tiempo, basándose en la última actualización de ese contenido.
-Un cron lo elimina si pasó mucho tiempo de que un usuario pida esa info.
-
-TODO: Que pasa si un usuario seguido borrá su cuenta? Debo eliminar directamente todo registro en las tablás de seguidos, seguídos únicos y boards?
