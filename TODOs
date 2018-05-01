@@ -11,7 +11,7 @@ Una vez hecho esto, una forma de aprovecharlo para los requests de twitter serí
 tokens quedan asociados a ese contenido, y se solicitan a twitter utilizándo dichos tokens. De esta forma los contenidos no se repiten
 para cada usuario aunque tengan los mismos intereses, pero puedo distribuir la carga de queries entre usuarios activos.
 
-
+Cargar imágenes, videos, etc.
 
 
 
