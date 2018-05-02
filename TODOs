@@ -1,4 +1,4 @@
-Implementar seguridad al login de la app.
+Implementar seguridad al login de la app. (Oauth, Oauth2, etc..)
 
 Implementar websockets para eliminar la necesidad de polling.
 
@@ -12,6 +12,16 @@ tokens quedan asociados a ese contenido, y se solicitan a twitter utilizándo di
 para cada usuario aunque tengan los mismos intereses, pero puedo distribuir la carga de queries entre usuarios activos.
 
 Cargar imágenes, videos, etc.
+
+Que en el front el interestsService tenga todos los intereses del usuario, y no solo los del board activo (para no solicitar todo ante un cambio de board, solo la primera vez que se selecciona.
+
+Que se puedan cambiar los ordenes de los boards y de los intereses arrastrando el mouse.
+
+Eliminar botones de refresh al implementar websockets.
+
+Al querer seguir un usuario nuevo, cuando se comienza a escribir el nombre de usuario, que se sugieran usuarios reales de twitter que comiencen con ese texto.
+
+
 
 
 
