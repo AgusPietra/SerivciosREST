@@ -1,25 +1,16 @@
-(x) -> Implementado
-( ) -> No Implementado
+GET /users/{userName}/boards -> Da la lista de boards del usuario {userName}
 
-POST /users/{userName} (x) -> crea usuario {userName}
+POST /users/{userName}/boards/{boardName} -> crea un nuevo board {boardName}, correspondiente al usuario {userName}, en el body viene un objeto board con lista de intereses.
 
-GET /users (x) -> devuelve lista de usarios (no la implemento porque no le veo utilidad)
+PUT /users/{userName}/boards/{boardName} -> actualiza un nuevo board {boardName}, correspondiente al usuario {userName}, en el body viene un objeto board con lista de intereses.
 
-DELETE /users/{userName} (x) -> borra usario {userName} junto con sus boards asociados.
+DELETE /users/{userName}/boards/{boardName} -> borra un board {boardName}, correspondiente al usuario {userName}.
 
-POST /users/{userName}/boards/{boardName} (x) -> crea un nuevo board {boardName}
+GET /interests/{interest}?count=N -> devuelve al menos N contenidos asociados a {interest}.
 
-GET /users/{userName}/boards (x) -> Da la lista de boards del usuario {userName}
+POST /users -> crea usuario cuyos datos están en el body.
 
-DELETE /users/{userName}/boards/{boardName} (x) -> borra board {boardName} de usario {userName}.
-
-GET /users/{userName}/boards/{boardName} (x) -> devuelve intereses y usuarios seguidos en el board {boardName} del usuario {userName}
-
-PUT /users/{userName}/boards/{boardName}/followedusers/{user} (x) -> el usuario {userName} empieza a seguir a usuario {user} en el board {boardName}
-
-PUT /users/{userName}/boards/{boardName}/followedinterests/{interest} (x) -> el usuario {userName} empieza a seguir temas de {interest} en el board {boardName}
-
-GET /interests/{interest} ( ) -> devuelve cierta cantidad de contenido con cierto criterio respecto a {interest}. (Le saqué la parte de boardName y userName rompiendo la simetría porque no tenía sentido en este caso).
+POST /users/{user} -> Pide login de usuario {user} cuyos datos están en el body.
 
 
 
